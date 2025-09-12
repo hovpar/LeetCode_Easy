@@ -1,4 +1,4 @@
-package FinfIndexOfFirstOccurenceInAString_28;
+package FindIndexOfFirstOccurenceInAString_28;
 
 import static org.junit.Assert.assertEquals;
 

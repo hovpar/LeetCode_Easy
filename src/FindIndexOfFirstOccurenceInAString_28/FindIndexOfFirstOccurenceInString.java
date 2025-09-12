@@ -1,4 +1,4 @@
-package FinfIndexOfFirstOccurenceInAString_28;
+package FindIndexOfFirstOccurenceInAString_28;
 
 class FindIndexOfFirstOccurenceInString {
 	static int strStr(String haystack, String needle) {
