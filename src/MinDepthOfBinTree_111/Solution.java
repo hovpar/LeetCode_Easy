@@ -17,17 +17,25 @@ class Solution {
 
 				for (int i = 0; i < levelSize; i++) {
 					TreeNode node = queue.poll();
-					if (node.left == null && node.right == null)
+
+					if (node.left == null && node.right == null) {
 						return depth;
-					if (node.left != null)
+					}
+
+					if (node.left != null) {
 						queue.offer(node.left);
-					if (node.right != null)
+					}
+
+					if (node.right != null) {
 						queue.offer(node.right);
+					}
+
 				}
 
 				depth++;
 			}
 			return depth;
 		}
+
 	}
 }
