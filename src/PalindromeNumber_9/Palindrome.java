@@ -1,6 +1,6 @@
 package PalindromeNumber_9;
 
-public class Palindrome {
+class Palindrome {
 //    Given an integer x, return true if x is a palindrome, and false otherwise.
 //
 //            Example 1:
