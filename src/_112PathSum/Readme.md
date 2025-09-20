@@ -28,7 +28,7 @@ Explanation: There are two root-to-leaf paths in the tree:
 There is no root-to-leaf path with sum = 5.
 #### Example 3:
 
-Input: root = [], targetSum = 0
+Input: root = [], targetSum = 0  
 Output: false
 Explanation: Since the tree is empty, there are no root-to-leaf paths.
  

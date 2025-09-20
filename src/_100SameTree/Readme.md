@@ -12,6 +12,7 @@ Two binary trees are considered the same if they are structurally identical, and
 #### Example 1:
 
 ![img](ex1.jpg)
+
 Input: p = [1,2,3], q = [1,2,3]  
 Output: true  
 #### Example 2:
@@ -22,6 +23,7 @@ Output: false
 #### Example 3:
 
 ![img](ex3.jpg)
+
 Input: p = [1,2,1], q = [1,1,2]  
 Output: false
  

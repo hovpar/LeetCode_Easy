@@ -18,11 +18,11 @@ _Note that buying on day 2 and selling on day 1 is not allowed because you must 
 #### Example 2:
 
 Input: prices = [7,6,4,3,1]  
-Output: 0
+Output: 0  
 Explanation: In this case, no transactions are done and the max profit = 0.
  
 
 #### Constraints:
 
-1 <= prices.length <= 105  
-0 <= prices[i] <= 104
+- 1 <= prices.length <= 105  
+- 0 <= prices[i] <= 104
