@@ -9,12 +9,12 @@ Given a binary tree, determine if it is height-balanced.
  
 
 #### Example 1:
-![img](balance_1.jpg)
+<img src="balance_1.jpg" alt="hint" style="max-width: 100%; height: auto;"/>
 
 Input: root = [3,9,20,null,null,15,7]  
 Output: true
 #### Example 2:
-![img](balance_2.jpg)  
+<img src="balance_2.jpg" alt="hint" style="max-width: 100%; height: auto;"/> 
 
 Input: root = [1,2,2,3,3,null,null,4,4]  
 Output: false  

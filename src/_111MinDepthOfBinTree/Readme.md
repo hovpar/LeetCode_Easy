@@ -13,7 +13,7 @@ The minimum depth is the number of nodes along the shortest path from the root n
 
 #### Example 1:
 
-![img](ex_depth.jpg)
+<img src="ex_depth.jpg" alt="hint" style="max-width: 100%; height: auto;"/>
 
 Input: root = [3,9,20,null,null,15,7]  
 Output: 2

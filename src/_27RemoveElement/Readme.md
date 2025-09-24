@@ -36,7 +36,7 @@ Explanation: Your function should return k = 2, with the first two elements of n
 It does not matter what you leave beyond the returned k (hence they are underscores).
 #### Example 2:
 
-Input: nums = [0,1,2,2,3,0,4,2], val = 2  
+Input: nums = [0,1,2,2,3,0,4,2], val = 2   
 Output: 5, nums = [0,1,4,0,3,_,_,_]  
 Explanation: Your function should return k = 5, with the first five elements of nums containing 0, 0, 1, 3, and 4.
 Note that the five elements can be returned in any order.
@@ -52,8 +52,10 @@ It does not matter what you leave beyond the returned k (hence they are undersco
 ##### Hint 1
 The problem statement clearly asks us to modify the array in-place and it also says that the element beyond the new length of the array can be anything. Given an element, we need to remove all the occurrences of it from the array. We don't technically need to remove that element per-say, right?
 ##### Hint 2
-We can move all the occurrences of this element to the end of the array. Use two pointers!
-![img](hint_remove_element.png)
+We can move all the occurrences of this element to the end of the array. Use two pointers!  
+
+<img src="hint_remove_element.png" alt="hint" style="max-width: 100%; height: auto;"/>
+
 
 ##### Hint 3
 Yet another direction of thought is to consider the elements to be removed as non-existent. In a single pass, if we keep copying the visible elements in-place, that should also solve this problem for us.

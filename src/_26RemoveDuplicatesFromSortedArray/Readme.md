@@ -49,7 +49,9 @@ It does not matter what you leave beyond the returned k (hence they are undersco
 ##### Hint 1
 In this problem, the key point to focus on is the input array being sorted. As far as duplicate elements are concerned, what is their positioning in the array when the given array is sorted? Look at the image below for the answer. If we know the position of one of the elements, do we also know the positioning of all the duplicate elements?
 
-![img info](hint_rem_dup.png)
+
+<img src="hint_rem_dup.png" alt="hint" style="max-width: 100%; height: auto;"/>
+
 
 ##### Hint 2
 We need to modify the array in-place and the size of the final array would potentially be smaller than the size of the input array. So, we ought to use a two-pointer approach here. One, that would keep track of the current element in the original array and another one for just the unique elements.

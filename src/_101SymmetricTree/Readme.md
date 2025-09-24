@@ -8,13 +8,13 @@ Given the root of a binary tree, check whether it is a mirror of itself (i.e., s
 
 #### Example 1:
 
-![img](symtree1.jpg)
+<img src="symtree1.jpg" alt="hint" style="max-width: 100%; height: auto;"/>
 
 Input: root = [1,2,2,3,4,4,3]  
 Output: true
 #### Example 2:
 
-![img](symtree2.jpg)
+<img src="symtree2.jpg" alt="hint" style="max-width: 100%; height: auto;"/>
 
 Input: root = [1,2,2,null,3,null,3]  
 Output: false

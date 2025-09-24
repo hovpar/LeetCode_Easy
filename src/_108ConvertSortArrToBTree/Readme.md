@@ -6,17 +6,18 @@ Given an integer array nums where the elements are sorted in ascending order, co
 
  
 #### Example 1:
-![img](btree1.jpg)
+<img src="btree1.jpg" alt="hint" style="max-width: 100%; height: auto;"/>
 
 Input: nums = [-10,-3,0,5,9]  
 Output: [0,-3,9,-10,null,5]  
-Explanation: [0,-10,5,null,-3,null,9] is also accepted:  
-![img](btree2.jpg)
+Explanation: [0,-10,5,null,-3,null,9] is also accepted: 
+ 
+<img src="btree2.jpg" alt="hint" style="max-width: 100%; height: auto;"/>
 
 
 #### Example 2:
 
-![img](btree.jpg)
+<img src="btree.jpg" alt="hint" style="max-width: 100%; height: auto;"/>
 
 Input: nums = [1,3]  
 Output: [3,1]  

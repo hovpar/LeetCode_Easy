@@ -11,18 +11,19 @@ Two binary trees are considered the same if they are structurally identical, and
 
 #### Example 1:
 
-![img](ex1.jpg)
+<img src="ex1.jpg" alt="hint" style="max-width: 100%; height: auto;"/>
 
 Input: p = [1,2,3], q = [1,2,3]  
 Output: true  
 #### Example 2:
-![img](ex2.jpg)
+
+<img src="ex2.jpg" alt="hint" style="max-width: 100%; height: auto;"/>
 
 Input: p = [1,2], q = [1,null,2]  
 Output: false  
 #### Example 3:
 
-![img](ex3.jpg)
+<img src="ex3.jpg" alt="hint" style="max-width: 100%; height: auto;"/>
 
 Input: p = [1,2,1], q = [1,1,2]  
 Output: false
