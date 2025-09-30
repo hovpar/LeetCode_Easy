@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-class BinaryTreeInorderTraversalTest {
+class SolutionTest {
 
 	@Test
 	void test1() {
@@ -15,7 +15,7 @@ class BinaryTreeInorderTraversalTest {
 		var root = new TreeNode(1, null, two);
 
 		List<Integer> expected = List.of(1, 3, 2);
-		assertEquals(expected, BinaryTreeInorderTraversal.inorderTraversal(root));
+		assertEquals(expected, Solution.inorderTraversal(root));
 	}
 
 	@Test
@@ -30,7 +30,7 @@ class BinaryTreeInorderTraversalTest {
 		var root = new TreeNode(1, two, three);
 
 		List<Integer> expected = List.of(4, 2, 6, 5, 7, 9, 1, 3, 8);
-		assertEquals(expected, BinaryTreeInorderTraversal.inorderTraversal(root));
+		assertEquals(expected, Solution.inorderTraversal(root));
 	}
 
 	@Test
@@ -38,7 +38,7 @@ class BinaryTreeInorderTraversalTest {
 		TreeNode root = null;
 
 		List<Integer> expected = List.of();
-		assertEquals(expected, BinaryTreeInorderTraversal.inorderTraversal(root));
+		assertEquals(expected, Solution.inorderTraversal(root));
 	}
 
 	@Test
@@ -46,7 +46,7 @@ class BinaryTreeInorderTraversalTest {
 		var root = new TreeNode(1);
 
 		List<Integer> expected = List.of(1);
-		assertEquals(expected, BinaryTreeInorderTraversal.inorderTraversal(root));
+		assertEquals(expected, Solution.inorderTraversal(root));
 	}
 
 }
