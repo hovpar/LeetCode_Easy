@@ -27,6 +27,8 @@ class Solution {
         n = ((n & 0xCCCCCCCC) >>> 2) | ((n & 0x33333333) << 2);
         n = ((n & 0xAAAAAAAA) >>> 1) | ((n & 0x55555555) << 1);
         return n;
+
+        // return Integer.reverse(n);
     }
 
 }
