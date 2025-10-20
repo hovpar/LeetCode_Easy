@@ -8,7 +8,7 @@ class Solution {
 
         for (int i = 0; i < 32; i++) {
 
-            if ((n & 1) == 1) {
+            if ((n & 1) > 0 ) {
                 count++;
             }
             n >>= 1;
