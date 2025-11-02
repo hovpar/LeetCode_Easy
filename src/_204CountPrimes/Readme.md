@@ -21,7 +21,7 @@ Given an integer `n`, return the number of prime numbers that are strictly less 
 
 ##### Constraints:
 
-- `0 <= n <= 5 * 106`  
+- `0 <= n <= 5 * 10^6`  
 
 **Hint 1**  
 Checking all the integers in the range [1, n - 1] is not efficient. Think about a better approach.
