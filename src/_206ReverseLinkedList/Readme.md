@@ -5,12 +5,12 @@ Given the head of a singly linked list, reverse the list, and return the reverse
  
 
 #### Example 1:
-
+<img src="rev1ex1.jpg" alt="hint" style="max-width: 100%; height: auto;"/>
 
 	Input: head = [1,2,3,4,5]
 	Output: [5,4,3,2,1]
 #### Example 2:
-
+<img src="rev1ex2.jpg" alt="hint" style="max-width: 100%; height: auto;"/>
 
 	Input: head = [1,2]
 	Output: [2,1]
