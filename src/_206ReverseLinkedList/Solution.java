@@ -16,6 +16,7 @@ class Solution {
 //
 //    }
 
+    // Recursive solution Time O(n) Memory O(n)
     ListNode reverseList(ListNode head) {
         if (head == null || head.next == null) {
             return head;

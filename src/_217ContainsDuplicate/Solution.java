@@ -3,7 +3,7 @@ package _217ContainsDuplicate;
 import java.util.HashSet;
 
 class Solution {
-    // Brute force
+    // Brute force - fails timeout test!
 //    public boolean containsDuplicate(int[] nums) {
 //
 //        var result = false;
