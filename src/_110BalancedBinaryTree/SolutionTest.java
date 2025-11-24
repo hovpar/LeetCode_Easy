@@ -1,6 +1,7 @@
 package _110BalancedBinaryTree;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -8,8 +9,8 @@ import java.util.Queue;
 import org.junit.jupiter.api.Test;
 
 class SolutionTest {
-	
-    TreeNode arrayToBinTree(Integer[] array) {
+
+    private TreeNode arrayToBinTree(Integer[] array) {
         if (array == null || array.length == 0 || array[0] == null) {
             return null;
         }
@@ -39,18 +40,19 @@ class SolutionTest {
 
         return root;
     }
-	Solution solution = new Solution();
 
-	@Test
+    Solution solution = new Solution();
+
+    @Test
     void testBalancedTree() {
-        Integer[] array = {3, 9, 20, null, null, 15, 7};
+        Integer[] array = { 3, 9, 20, null, null, 15, 7 };
         TreeNode root = arrayToBinTree(array);
         assertTrue(solution.isBalanced(root));
     }
 
     @Test
     void testUnbalancedTree() {
-        Integer[] array = {1, 2, 2, 3, 3, null, null, 4, 4};
+        Integer[] array = { 1, 2, 2, 3, 3, null, null, 4, 4 };
         TreeNode root = arrayToBinTree(array);
         assertFalse(solution.isBalanced(root));
     }
@@ -61,7 +63,5 @@ class SolutionTest {
         TreeNode root = arrayToBinTree(array);
         assertTrue(solution.isBalanced(root));
     }
-
-
 
 }
