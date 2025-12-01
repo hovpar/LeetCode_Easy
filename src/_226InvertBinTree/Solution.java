@@ -33,11 +33,13 @@ class Solution {
 
         while (!queue.isEmpty()) {
             TreeNode current = queue.poll();
+
             // swap children
-            TreeNode temp = current.left;
+            final TreeNode temp = current.left;
             current.left = current.right;
             current.right = temp;
 
+            // Add left and right of this node to the queue
             if (current.left != null) {
                 queue.add(current.left);
             }

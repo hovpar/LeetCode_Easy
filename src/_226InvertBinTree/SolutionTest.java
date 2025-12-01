@@ -8,15 +8,16 @@ import org.junit.jupiter.api.Test;
 
 class SolutionTest {
 
+    Solution s = new Solution();
+
     @Test
     void testNullTree() {
-        Solution s = new Solution();
+
         assertNull(s.invertTree(null));
     }
 
     @Test
     void testSingleNode() {
-        Solution s = new Solution();
         TreeNode root = new TreeNode(1);
 
         TreeNode result = s.invertTree(root);
@@ -28,7 +29,6 @@ class SolutionTest {
 
     @Test
     void testTwoNodesLeft() {
-        Solution s = new Solution();
         TreeNode root = new TreeNode(1, new TreeNode(2), null);
 
         TreeNode result = s.invertTree(root);
@@ -40,7 +40,6 @@ class SolutionTest {
 
     @Test
     void testTwoNodesRight() {
-        Solution s = new Solution();
         TreeNode root = new TreeNode(1, null, new TreeNode(3));
 
         TreeNode result = s.invertTree(root);
@@ -52,7 +51,6 @@ class SolutionTest {
 
     @Test
     void testFullTree() {
-        Solution s = new Solution();
         TreeNode root = new TreeNode(4, new TreeNode(2, new TreeNode(1), new TreeNode(3)),
                 new TreeNode(7, new TreeNode(6), new TreeNode(9)));
 
