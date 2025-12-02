@@ -5,13 +5,20 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class MyStackTest {
 
+    private MyStack stack;
+
+    @BeforeEach
+    void setup() {
+        stack = new MyStack();
+    }
+
     @Test
     void testPushAndTop() {
-        MyStack stack = new MyStack();
         stack.push(1);
         assertEquals(1, stack.top());
 
@@ -24,7 +31,6 @@ class MyStackTest {
 
     @Test
     void testPushAndPop() {
-        MyStack stack = new MyStack();
         stack.push(10);
         stack.push(20);
         stack.push(30);
@@ -37,7 +43,6 @@ class MyStackTest {
 
     @Test
     void testInterleavedOperations() {
-        MyStack stack = new MyStack();
 
         stack.push(5);
         stack.push(7);
@@ -56,7 +61,6 @@ class MyStackTest {
 
     @Test
     void testSingleElement() {
-        MyStack stack = new MyStack();
         stack.push(42);
 
         assertFalse(stack.empty());
@@ -67,7 +71,6 @@ class MyStackTest {
 
     @Test
     void testEmptyStack() {
-        MyStack stack = new MyStack();
 
         assertTrue(stack.empty());
 
@@ -79,7 +82,6 @@ class MyStackTest {
 
     @Test
     void longSequenceTest() {
-        MyStack stack = new MyStack();
 
         for (int i = 1; i <= 1000; i++) {
             stack.push(i);
