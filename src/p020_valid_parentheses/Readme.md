@@ -1,6 +1,5 @@
 # 20. Valid Parentheses
 
-Easy
 
 Hint
 Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
@@ -14,40 +13,40 @@ An input string is valid if:
 
 #### Example 1:
 
-Input: s = "()"
+> **Input:** s = "()"
 
-Output: true
+> **Output:** true
 
 #### Example 2:
 
-Input: s = "()[]{}"
+> **Input:** s = "()[]{}"
 
-Output: true
+> **Output:** true
 
 #### Example 3:
 
-Input: s = "(]"
+> **Input:** s = "(]"
 
-Output: false
+> **Output:** false
 
 #### Example 4:
 
-Input: s = "([])"
+> **Input:** s = "([])"
 
-Output: true
+> **Output:** true
 
 #### Example 5:
 
-Input: s = "([)]"
+> **Input:** s = "([)]"
 
-Output: false
+> **Output:** false
 
  
 
 #### Constraints:
 
-- 1 <= s.length <= 104
-- s consists of parentheses only '()[]{}'.  
+- 1 <= s.length <= 10<sup>4</sup>
+- `s` consists of parentheses only `'()[]{}'`.  
 
 ##### Hint 1
 Use a stack of characters.

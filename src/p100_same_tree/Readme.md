@@ -1,9 +1,6 @@
 # 100. Same Tree
 
-Easy
-
-
-Given the roots of two binary trees p and q, write a function to check if they are the same or not.
+Given the roots of two binary trees `p` and `q`, write a function to check if they are the same or not.
 
 Two binary trees are considered the same if they are structurally identical, and the nodes have the same value.
 
@@ -13,23 +10,25 @@ Two binary trees are considered the same if they are structurally identical, and
 
 <img src="ex1.jpg" alt="hint" style="max-width: 100%; height: auto;"/>
 
-Input: p = [1,2,3], q = [1,2,3]  
-Output: true  
+> **Input:** p = [1,2,3], q = [1,2,3]  
+**Output:** true
+  
 #### Example 2:
 
 <img src="ex2.jpg" alt="hint" style="max-width: 100%; height: auto;"/>
 
-Input: p = [1,2], q = [1,null,2]  
-Output: false  
+> **Input:** p = [1,2], q = [1,null,2]  
+**Output:** false
+ 
 #### Example 3:
 
 <img src="ex3.jpg" alt="hint" style="max-width: 100%; height: auto;"/>
 
-Input: p = [1,2,1], q = [1,1,2]  
-Output: false
+> **Input:** p = [1,2,1], q = [1,1,2]  
+**Output:** false
  
 
 **Constraints:**
 
-- The number of nodes in both trees is in the range [0, 100].
-- -104 <= Node.val <= 104
+- The number of nodes in both trees is in the range `[0, 100]`.
+- -10<sup>4</sup> <= Node.val <= 10<sup>4</sup>

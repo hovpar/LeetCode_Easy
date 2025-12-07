@@ -30,4 +30,4 @@ For example:
 
 ##### Constraints:
 
-- 1 <= columnNumber <= 2^31 - 1
+- 1 <= columnNumber <= 2<sup>31</sup> - 1
