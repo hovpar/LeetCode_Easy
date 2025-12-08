@@ -28,6 +28,6 @@ A word is a maximal `substring` consisting of non-space characters only.
 
 ##### Constraints:
 
-- `1 <= s.length <= 104`
+- 1 <= s.length <= 10<sup>4</sup>
 - `s` consists of only English letters and spaces ' '.
 - There will be at least one word in `s`.

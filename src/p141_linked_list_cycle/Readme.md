@@ -12,29 +12,31 @@ Return `true` *if there is a cycle in the linked list.* Otherwise, return `false
 
 <img src="circularlinkedlist.png" alt="hint" style="max-width: 100%; height: auto;"/>
 
-Input: head = [3,2,0,-4], pos = 1  
-Output: true  
-Explanation: There is a cycle in the linked list, where the tail connects to the 1st node (0-indexed).
+> **Input:** head = [3,2,0,-4], pos = 1  
+**Output:** true  
+**Explanation:** There is a cycle in the linked list, where the tail connects to the 1st node (0-indexed).
+
 #### Example 2:
 
 <img src="circularlinkedlist_test2.png" alt="hint" style="max-width: 100%; height: auto;"/>
 
-Input: head = [1,2], pos = 0  
-Output: true  
-Explanation: There is a cycle in the linked list, where the tail connects to the 0th node.
+> **Input:** head = [1,2], pos = 0  
+**Output:** true  
+**Explanation:** There is a cycle in the linked list, where the tail connects to the 0th node.
+
 #### Example 3:
 
 <img src="circularlinkedlist_test3.png" alt="hint" style="max-width: 100%; height: auto;"/>
 
-Input: head = [1], pos = -1  
-Output: false  
-Explanation: There is no cycle in the linked list.
+> **Input:** head = [1], pos = -1  
+**Output:** false  
+**Explanation:** There is no cycle in the linked list.
  
 
 ##### Constraints:
 
-- The number of the nodes in the list is in the range [0, 104].
-- -105 <= Node.val <= 105
+- The number of the nodes in the list is in the range `[0, 104]`.
+- -10<sup>5</sup> <= Node.val <= 10<sup>5</sup>
 - `pos` is `-1` or a valid index in the linked-list.
  
 

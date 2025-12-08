@@ -20,5 +20,5 @@ The first occurrence is at index 0, so we return 0.
 
 ##### Constraints:
 
-- `1 <= haystack.length, needle.length <= 104`
+- 1 <= haystack.length, needle.length <= 10<sup>4</sup>
 - `haystack` and `needle` consist of only lowercase English characters.

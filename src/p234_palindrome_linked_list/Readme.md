@@ -11,17 +11,15 @@ Given the head of a singly linked list, return true if it is a **palindrome** or
 
 <img src="pal1linked-list.jpg" alt="hint" style="max-width: 100%; height: auto;"/>
 
-> **Input:** head = [1,2,2,1]
-
-> **Output:** true
+> **Input:** head = [1,2,2,1]  
+**Output:** true
 
 #### Example 2:
 
 <img src="pal2linked-list.jpg" alt="hint" style="max-width: 100%; height: auto;"/>
 
-> **Input:** head = [1,2]
-
-> **Output:** false
+> **Input:** head = [1,2]  
+**Output:** false
  
 
 ##### Constraints:
