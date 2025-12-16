@@ -20,6 +20,12 @@ class SolutionTest {
     }
 
     @Test
+    void testTwoDigitNumberRequiringReduction() {
+        // 19 -> 1
+        assertEquals(1, s.addDigits(19));
+    }
+
+    @Test
     void testPowerOfTen() {
         // 1000 -> 1
         assertEquals(1, s.addDigits(1000));
