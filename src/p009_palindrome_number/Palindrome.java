@@ -2,7 +2,7 @@ package p009_palindrome_number;
 
 class Palindrome {
 
-    public boolean isPalindrome(int x) {
+//    boolean isPalindrome(int x) {
 //        var isPalindrome = true;
 //        var cd = countDigits(x);
 //        var power = cd;
@@ -20,7 +20,7 @@ class Palindrome {
 //        return isPalindrome;
 //    }
 //
-//    public static int countDigits(int num) {
+//    private int countDigits(int num) {
 //        int count = 1;
 //
 //        while (num / 10 != 0) {
@@ -28,12 +28,12 @@ class Palindrome {
 //            count++;
 //        }
 //        return count;
+
+//}
+    // Approach with the reverse of the integer
+    boolean isPalindrome(int x) {
         int reverse = reverse(x);
-        if (reverse == x) {
-            return true;
-        } else {
-            return false;
-        }
+        return reverse == x;
 
     }
 
