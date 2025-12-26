@@ -22,8 +22,8 @@ class Solution {
 //                }
 //            } else {
 //                // If mapping for char doesn't exist, 
-//    // check if word is already mapped to another char
-//                // not effective O(n)
+//                // check if word is already mapped to another char
+//                // not effective O(n) !!
 //                if (map.containsValue(word)) {
 //                    return false;
 //                }
@@ -48,19 +48,19 @@ class Solution {
         Map<String, Character> w2p = new HashMap<>();
 
         for (int i = 0; i < pattern.length(); i++) {
-            char p = pattern.charAt(i);
-            String w = words[i];
+            char ch = pattern.charAt(i);
+            String word = words[i];
 
-            if (p2w.containsKey(p)) {
-                if (!p2w.get(p).equals(w)) {
+            if (p2w.containsKey(ch)) {
+                if (!p2w.get(ch).equals(word)) {
                     return false;
                 }
             } else {
-                if (w2p.containsKey(w)) {
+                if (w2p.containsKey(word)) {
                     return false;
                 }
-                p2w.put(p, w);
-                w2p.put(w, p);
+                p2w.put(ch, word);
+                w2p.put(word, ch);
             }
         }
         return true;
