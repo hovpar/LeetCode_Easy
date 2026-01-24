@@ -10,52 +10,52 @@ class SolutionTest {
 
     @Test
     void testExampleLeetcode() {
-	assertEquals(0, s.firstUniqChar("leetcode")); // 'l'
+        assertEquals(0, s.firstUniqChar("leetcode")); // 'l'
     }
 
     @Test
     void testExampleLoveleetcode() {
-	assertEquals(2, s.firstUniqChar("loveleetcode")); // 'v'
+        assertEquals(2, s.firstUniqChar("loveleetcode")); // 'v'
     }
 
     @Test
     void testNoUniqueCharacters() {
-	assertEquals(-1, s.firstUniqChar("aabb"));
+        assertEquals(-1, s.firstUniqChar("aabb"));
     }
 
     @Test
     void testEmptyString() {
-	assertEquals(-1, s.firstUniqChar(""));
+        assertEquals(-1, s.firstUniqChar(""));
     }
 
     @Test
     void testSingleCharacter() {
-	assertEquals(0, s.firstUniqChar("z"));
+        assertEquals(0, s.firstUniqChar("z"));
     }
 
     @Test
     void testAllSameCharacter() {
-	assertEquals(-1, s.firstUniqChar("aaaaaa"));
+        assertEquals(-1, s.firstUniqChar("aaaaaa"));
     }
 
     @Test
     void testUniqueAtEnd() {
-	assertEquals(4, s.firstUniqChar("aabbc")); // 'c'
+        assertEquals(4, s.firstUniqChar("aabbc")); // 'c'
     }
 
     @Test
     void testFirstUniqueIsEarliestByIndex() {
-	assertEquals(1, s.firstUniqChar("abac")); // 'b' at index 1
+        assertEquals(1, s.firstUniqChar("abac")); // 'b' at index 1
     }
 
     @Test
     void testMultipleUniquesPickFirstByIndex() {
-	assertEquals(2, s.firstUniqChar("ccad"));
+        assertEquals(2, s.firstUniqChar("ccad"));
     }
 
     @Test
     void testUniqueInMiddle() {
-	assertEquals(4, s.firstUniqChar("aabbcdd"));
+        assertEquals(4, s.firstUniqChar("aabbcdd"));
     }
 
 }
