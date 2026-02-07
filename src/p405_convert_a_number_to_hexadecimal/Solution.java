@@ -22,7 +22,7 @@ class Solution {
         }
     }
 
-    // Built-in function
+    //Built-in function
 //    String toHex(int num) {
 //        return Integer.toHexString(num);
 //    }
