@@ -3,17 +3,17 @@ package p441_arranging_coins;
 class Solution {
 
     // iterative approach
-    int arrangeCoins(int n) {
-
-        var k = 0;
-
-        while (n >= 0) {
-            k++;
-            n = n - k;
-        }
-
-        return k - 1;
-    }
+//    int arrangeCoins(int n) {
+//
+//        var k = 0;
+//
+//        while (n >= 0) {
+//            k++;
+//            n = n - k;
+//        }
+//
+//        return k - 1;
+//    }
 
     // binary search approach
 //    int arrangeCoins(int n) {
@@ -37,9 +37,9 @@ class Solution {
 //
 //    }
 
-    // using Quadratic Formula
-//    int arrangeCoins(int n) {
-//        return (int) (Math.sqrt(2 * (long) n + 0.25) - 0.5);
-//
-//    }
+    // using Quadratic Formula, also O(log(n)) because of Math.sqrt()!
+    int arrangeCoins(int n) {
+        return (int) (Math.sqrt(2 * (long) n + 0.25) - 0.5);
+
+    }
 }
