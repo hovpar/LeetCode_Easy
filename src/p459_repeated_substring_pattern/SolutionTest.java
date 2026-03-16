@@ -3,68 +3,81 @@ package p459_repeated_substring_pattern;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.jupiter.api.Test;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+import java.util.stream.Stream;
+
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class SolutionTest {
 
-    private final Solution s = new Solution();
-
-    // -------- TRUE cases --------
-
-    @ParameterizedTest(name = "shouldReturnTrue for \"{0}\"")
-    @ValueSource(strings = { "abab",              // "ab" * 2
-            "ababab",            // "ab" * 3
-            "abcabcabcabc",      // "abc" * 4
-            "aaaa",              // "a" * 4
-            "zzzzzz",            // "z" * 6
-            "xyzxyz",            // "xyz" * 2
-            "abaaba",            // "aba" * 2 (pattern length 3)
-            "abcaabca"           // "abca" * 2 (pattern length 4)
-    })
-    void shouldReturnTrue_whenStringIsMadeOfRepeatedSubstring(String input) {
-        assertTrue(s.repeatedSubstringPattern(input));
+    @Target(ElementType.METHOD)
+    @Retention(RetentionPolicy.RUNTIME)
+    @ParameterizedTest
+    @MethodSource("solvers")
+    @interface SolverTest {
     }
 
-    // -------- FALSE cases --------
-
-    @ParameterizedTest(name = "shouldReturnFalse for \"{0}\"")
-    @ValueSource(strings = { "aba",       // not a full repetition
-            "a",         // length 1 cannot repeat
-            "ab",        // cannot repeat a shorter substring to get "ab"
-            "abcd",      // no repetition
-            "ababa",     // looks repetitive but is not exact repetition
-            "abaabb",    // partial overlaps do not count
-            "abcab",     // prefix repeats but not whole string
-            "aaaaab",    // almost all same, last char breaks it
-            "abababa"    // odd-length breaks "ab" repetition
-    })
-    void shouldReturnFalse_whenStringIsNotMadeOfRepeatedSubstring(String input) {
-        assertFalse(s.repeatedSubstringPattern(input));
+    static Stream<SolutionVariants.Solver> solvers() {
+        return Stream.of(new SolutionVariants.DivisorRepeatSolver(), new SolutionVariants.ConcatenationTrickSolver());
     }
 
-    // -------- Focused edge tests (nice to keep explicit) --------
+    @Nested
+    class TrueCases {
 
-    @Test
-    void shouldReturnFalse_forSingleCharacter() {
-        assertFalse(s.repeatedSubstringPattern("x"));
+        static Stream<Arguments> trueCases() {
+            return SolutionTest.solvers()
+                    .flatMap(solver -> Stream
+                            .of("abab", "ababab", "abcabcabcabc", "aaaa", "zzzzzz", "xyzxyz", "abaaba", "abcaabca")
+                            .map(input -> Arguments.of(solver, input)));
+        }
+
+        @ParameterizedTest(name = "{0} -> \"{1}\"")
+        @MethodSource("trueCases")
+        void shouldReturnTrue(SolutionVariants.Solver solver, String input) {
+            assertTrue(solver.repeatedSubstringPattern(input));
+        }
     }
 
-    @Test
-    void shouldReturnTrue_forAllSameCharacter() {
-        assertTrue(s.repeatedSubstringPattern("bbbbbbbb")); // "b" * 8
+    @Nested
+    class FalseCases {
+
+        static Stream<Arguments> falseCases() {
+            return SolutionTest.solvers()
+                    .flatMap(solver -> Stream
+                            .of("aba", "a", "ab", "abcd", "ababa", "abaabb", "abcab", "aaaaab", "abababa")
+                            .map(input -> Arguments.of(solver, input)));
+        }
+
+        @ParameterizedTest(name = "{0} -> \"{1}\"")
+        @MethodSource("falseCases")
+        void shouldReturnFalse(SolutionVariants.Solver solver, String input) {
+            assertFalse(solver.repeatedSubstringPattern(input));
+        }
     }
 
-    @Test
-    void shouldReturnFalse_forPrimeLengthNonUniformString() {
-        // prime length (7) makes repetition harder; still possible only if all chars
-        // same, which it's not
-        assertFalse(s.repeatedSubstringPattern("abcdefg"));
+    @SolverTest
+    void shouldReturnFalse_forSingleCharacter(SolutionVariants.Solver solver) {
+        assertFalse(solver.repeatedSubstringPattern("x"));
     }
 
-    @Test
-    void shouldReturnTrue_whenPatternLengthIsMoreThanOne() {
-        assertTrue(s.repeatedSubstringPattern("abcdabcdabcd")); // "abcd" * 3
+    @SolverTest
+    void shouldReturnTrue_forAllSameCharacter(SolutionVariants.Solver solver) {
+        assertTrue(solver.repeatedSubstringPattern("bbbbbbbb"));
+    }
+
+    @SolverTest
+    void shouldReturnFalse_forPrimeLengthNonUniformString(SolutionVariants.Solver solver) {
+        assertFalse(solver.repeatedSubstringPattern("abcdefg"));
+    }
+
+    @SolverTest
+    void shouldReturnTrue_whenPatternLengthIsMoreThanOne(SolutionVariants.Solver solver) {
+        assertTrue(solver.repeatedSubstringPattern("abcdabcdabcd"));
     }
 }
