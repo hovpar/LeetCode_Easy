@@ -18,7 +18,7 @@ Note that the two extra dashes are not needed and can be removed.
 #### Example 2:
 
 >**Input:** s = "2-5g-3-J", k = 2  
-**Output:** "2-5G-3J"
+**Output:** "2-5G-3J"  
 **Explanation:** The string s has been split into three parts, each part has 2 characters except the first part as it could be shorter as mentioned above.
  
 
