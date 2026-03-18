@@ -2,64 +2,79 @@ package p448_find_all_numbers_disappeared_in_an_array;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 import java.util.List;
+import java.util.stream.Stream;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class SolutionTest {
 
-    private final Solution s = new Solution();
+    @Target(ElementType.METHOD)
+    @Retention(RetentionPolicy.RUNTIME)
+    @ParameterizedTest
+    @MethodSource("solvers")
+    @interface SolverTest {
+    }
 
-    @Test
-    void returnsMissingNumbersForTypicalCase() {
+    static Stream<SolutionVariants.Solver> solvers() {
+        return Stream.of(new SolutionVariants.HashSetSolver(), new SolutionVariants.InPlaceSolver());
+    }
+
+    @SolverTest
+    void returnsMissingNumbersForTypicalCase(SolutionVariants.Solver s) {
         int[] nums = { 4, 3, 2, 7, 8, 2, 3, 1 };
         List<Integer> expected = List.of(5, 6);
 
         assertEquals(expected, s.findDisappearedNumbers(nums));
     }
 
-    @Test
-    void returnsSingleMissingNumber() {
+    @SolverTest
+    void returnsSingleMissingNumber(SolutionVariants.Solver s) {
         int[] nums = { 1, 1 };
         List<Integer> expected = List.of(2);
 
         assertEquals(expected, s.findDisappearedNumbers(nums));
     }
 
-    @Test
-    void returnsEmptyListWhenNoNumbersMissing() {
+    @SolverTest
+    void returnsEmptyListWhenNoNumbersMissing(SolutionVariants.Solver s) {
         int[] nums = { 1, 2, 3, 4, 5 };
         List<Integer> expected = List.of();
 
         assertEquals(expected, s.findDisappearedNumbers(nums));
     }
 
-    @Test
-    void returnsAllExceptOneWhenAllElementsSame() {
+    @SolverTest
+    void returnsAllExceptOneWhenAllElementsSame(SolutionVariants.Solver s) {
         int[] nums = { 2, 2, 2, 2 };
         List<Integer> expected = List.of(1, 3, 4);
 
         assertEquals(expected, s.findDisappearedNumbers(nums));
     }
 
-    @Test
-    void handlesSingleElementArrayPresent() {
+    @SolverTest
+    void handlesSingleElementArrayPresent(SolutionVariants.Solver s) {
         int[] nums = { 1 };
         List<Integer> expected = List.of();
 
         assertEquals(expected, s.findDisappearedNumbers(nums));
     }
 
-    @Test
-    void handlesAllNumbersMissingExceptOne() {
+    @SolverTest
+    void handlesAllNumbersMissingExceptOne(SolutionVariants.Solver s) {
         int[] nums = { 1, 1, 1, 1, 1 };
         List<Integer> expected = List.of(2, 3, 4, 5);
 
         assertEquals(expected, s.findDisappearedNumbers(nums));
     }
 
-    @Test
-    void worksWithLargeSequentialInput() {
+    @SolverTest
+    void worksWithLargeSequentialInput(SolutionVariants.Solver s) {
         int n = 1000;
         int[] nums = new int[n];
         for (int i = 0; i < n; i++) {
