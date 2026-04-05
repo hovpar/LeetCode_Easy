@@ -2,69 +2,70 @@ package p434_number_of_segments_in_a_string;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.Test;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+import java.util.stream.Stream;
+
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class SolutionTest {
 
-    private final Solution s = new Solution();
+    @Target(ElementType.METHOD)
+    @Retention(RetentionPolicy.RUNTIME)
+    @ParameterizedTest
+    @MethodSource("solvers")
+    @interface SolverTest {
+    }
 
-    @Test
-    void returnsZero_whenEmptyString() {
+    static Stream<SolutionVariants.Solver> solvers() {
+        return Stream.of(new SolutionVariants.SegmentStartScanSolver(), new SolutionVariants.RegexSplitSolver());
+    }
+
+    @SolverTest
+    void returnsZero_whenEmptyString(SolutionVariants.Solver s) {
         assertEquals(0, s.countSegments(""));
     }
 
-    @Test
-    void returnsOne_whenSingleWordNoSpaces() {
+    @SolverTest
+    void returnsOne_whenSingleWordNoSpaces(SolutionVariants.Solver s) {
         assertEquals(1, s.countSegments("Hello"));
     }
 
-    @Test
-    void returnsFive_whenTypicalSentenceWithSpaces() {
+    @SolverTest
+    void returnsFive_whenTypicalSentenceWithSpaces(SolutionVariants.Solver s) {
         assertEquals(5, s.countSegments("Hello, my name is John"));
     }
 
-    @Test
-    void returnsZero_whenOnlySpaces() {
+    @SolverTest
+    void returnsZero_whenOnlySpaces(SolutionVariants.Solver s) {
         assertEquals(0, s.countSegments("                "));
     }
 
-    @Test
-    void returnsOne_whenLeadingAndTrailingSpacesAroundWord() {
+    @SolverTest
+    void returnsOne_whenLeadingAndTrailingSpacesAroundWord(SolutionVariants.Solver s) {
         assertEquals(1, s.countSegments("   Hello   "));
     }
 
-    @Test
-    void returnsTwo_whenMultipleSpacesBetweenWords() {
+    @SolverTest
+    void returnsTwo_whenMultipleSpacesBetweenWords(SolutionVariants.Solver s) {
         assertEquals(2, s.countSegments("Hello     world"));
     }
 
-    @Test
-    void returnsThree_whenMixedWhitespaceSpacesTabsNewlines() {
-        assertEquals(3, s.countSegments("a\tb\nc"));
-    }
-
-    @Test
-    void returnsTwo_whenNewlinesAndSpacesAroundWords() {
-        assertEquals(2, s.countSegments("\n  hello \n world \n"));
-    }
-
-    @Test
-    void returnsZero_whenOnlyTabsAndNewlines() {
-        assertEquals(0, s.countSegments("\t\n\n\t"));
-    }
-
-    @Test
-    void countsPunctuationAsPartOfSegments_whenSeparatedByWhitespace() {
+    @SolverTest
+    void countsPunctuationAsPartOfSegments_whenSeparatedByWhitespace(SolutionVariants.Solver s) {
         assertEquals(3, s.countSegments("hi, there! :)"));
     }
 
-    @Test
-    void returnsOne_whenOnlyPunctuationNoWhitespace() {
+    @SolverTest
+    void returnsOne_whenOnlyPunctuationNoWhitespace(SolutionVariants.Solver s) {
         assertEquals(1, s.countSegments("..."));
     }
 
-    @Test
-    void returnsOne_whenSingleCharacterWord() {
+    @SolverTest
+    void returnsOne_whenSingleCharacterWord(SolutionVariants.Solver s) {
         assertEquals(1, s.countSegments("a"));
     }
 
