@@ -2,58 +2,75 @@ package p409_longest_palindrome;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.Test;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+import java.util.stream.Stream;
+
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class SolutionTest {
 
-    private final Solution s = new Solution();
+    @Target(ElementType.METHOD)
+    @Retention(RetentionPolicy.RUNTIME)
+    @ParameterizedTest
+    @MethodSource("solvers")
+    @interface SolverTest {
+    }
 
-    @Test
-    void testUsesSingleOddCharacterAsCenter() {
+    static Stream<SolutionVariants.Solver> solvers() {
+        return Stream.of(new SolutionVariants.FrequencyMapSolver(), new SolutionVariants.ParitySetSolver(),
+                new SolutionVariants.FixedSizeFrequencyArraySolver());
+    }
+
+    @SolverTest
+    void testUsesSingleOddCharacterAsCenter(SolutionVariants.Solver s) {
         assertEquals(7, s.longestPalindrome("abccccdd"));
     }
 
-    @Test
-    void testSingleLetter() {
+    @SolverTest
+    void testSingleLetter(SolutionVariants.Solver s) {
         assertEquals(1, s.longestPalindrome("a"));
     }
 
-    @Test
-    void testEmptyString() {
+    @SolverTest
+    void testEmptyString(SolutionVariants.Solver s) {
         assertEquals(0, s.longestPalindrome(""));
     }
 
-    @Test
-    void testAllEvenCounts() {
+    @SolverTest
+    void testAllEvenCounts(SolutionVariants.Solver s) {
         // All characters can be fully used
         assertEquals(6, s.longestPalindrome("aabbcc"));
     }
 
-    @Test
-    void testMultipleOddCounts() {
+    @SolverTest
+    void testMultipleOddCounts(SolutionVariants.Solver s) {
         // Only one odd-count character can contribute +1 center
         assertEquals(7, s.longestPalindrome("aaabbbb"));
     }
 
-    @Test
-    void testAllOddSingleOccurrences() {
+    @SolverTest
+    void testAllOddSingleOccurrences(SolutionVariants.Solver s) {
         // Only one character can be used
         assertEquals(1, s.longestPalindrome("abc"));
     }
 
-    @Test
-    void testCaseSensitivity() {
+    @SolverTest
+    void testCaseSensitivity(SolutionVariants.Solver s) {
         // 'A' and 'a' are different characters
         assertEquals(1, s.longestPalindrome("Aa"));
     }
 
-    @Test
-    void testLargeRepeatedCharacters() {
+    @SolverTest
+    void testLargeRepeatedCharacters(SolutionVariants.Solver s) {
         assertEquals(1000, s.longestPalindrome("a".repeat(1000)));
     }
 
-    @Test
-    void testPalindromeAlready() {
+    @SolverTest
+    void testPalindromeAlready(SolutionVariants.Solver s) {
         assertEquals(7, s.longestPalindrome("racecar"));
     }
 

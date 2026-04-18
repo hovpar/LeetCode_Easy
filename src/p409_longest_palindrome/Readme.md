@@ -1,6 +1,6 @@
 # 409. Longest Palindrome
 
-Given `a` string s which consists of lowercase or uppercase letters, return the length of the **longest palindrome** that can be built with those letters.
+Given a string `s` which consists of lowercase or uppercase letters, return the length of the **longest palindrome** that can be built with those letters.
 
 *A palindrome is a string that reads the same forward and backward.*
 

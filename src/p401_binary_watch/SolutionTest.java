@@ -4,25 +4,40 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class SolutionTest {
 
-    private final Solution s = new Solution();
+    @Target(ElementType.METHOD)
+    @Retention(RetentionPolicy.RUNTIME)
+    @ParameterizedTest
+    @MethodSource("solvers")
+    @interface SolverTest {
+    }
 
-    @Test
-    void testZeroLeds() {
+    static Stream<SolutionVariants.Solver> solvers() {
+        return Stream.of(new SolutionVariants.BitCountSolver(), new SolutionVariants.BacktrackingSolver());
+    }
+
+    @SolverTest
+    void testZeroLeds(SolutionVariants.Solver s) {
         // Only one possible time: 0:00
         List<String> result = s.readBinaryWatch(0);
         assertEquals(List.of("0:00"), result, "Should return 0:00 when no LEDs are on");
     }
 
-    @Test
-    void testOneLed() {
+    @SolverTest
+    void testOneLed(SolutionVariants.Solver s) {
         List<String> expected = List.of("0:01", "0:02", "0:04", "0:08", "0:16", "0:32", "1:00", "2:00", "4:00", "8:00");
         List<String> result = s.readBinaryWatch(1);
 
@@ -31,8 +46,8 @@ class SolutionTest {
         assertTrue(result.containsAll(expected));
     }
 
-    @Test
-    void testMaxPossibleLeds() {
+    @SolverTest
+    void testMaxPossibleLeds(SolutionVariants.Solver s) {
         // The maximum number of LEDs that can be on is 8
         // (8:59 = 1000 : 111011 -> 1+5 = 6 bits)
         // (11:51 = 1011 : 110011 -> 3+4 = 7 bits)
@@ -41,8 +56,8 @@ class SolutionTest {
         assertTrue(s.readBinaryWatch(10).isEmpty());
     }
 
-    @Test
-    void testBoundaryConstraints() {
+    @SolverTest
+    void testBoundaryConstraints(SolutionVariants.Solver s) {
         // Test a high but valid number
         // For turnedOn = 8, there are specific valid times like 7:59 or 11:59
         List<String> result = s.readBinaryWatch(8);
@@ -52,8 +67,8 @@ class SolutionTest {
         assertFalse(result.isEmpty(), "There should be valid times for 8 LEDs");
     }
 
-    @Test
-    void testAgainstBruteForce() {
+    @SolverTest
+    void testAgainstBruteForce(SolutionVariants.Solver s) {
         int turnedOn = 4;
         List<String> backtrackingResult = s.readBinaryWatch(turnedOn);
 
