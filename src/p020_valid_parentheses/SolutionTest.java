@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class ValidParenthesesTest {
-    ValidParentheses validParentheses = new ValidParentheses();
+class SolutionTest {
+    Solution validParentheses = new Solution();
 
     @Test
     void testIsValid() {

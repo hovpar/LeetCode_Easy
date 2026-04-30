@@ -1,6 +1,6 @@
 package p013_roman_to_integer;
 
-class RomanToInteger {
+class Solution {
 
 	int romanToInt(String s) {
 		var result = 0;

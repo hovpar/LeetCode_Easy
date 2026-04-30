@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class RomanToIntegerTest {
+class SolutionTest {
 	
-	RomanToInteger romanToInt = new RomanToInteger();
+	Solution romanToInt = new Solution();
 
     @Test
     void testBasicNumerals() {

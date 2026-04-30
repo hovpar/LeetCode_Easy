@@ -2,7 +2,7 @@ package p020_valid_parentheses;
 
 import java.util.Stack;
 
-class ValidParentheses {
+class Solution {
 	boolean isValid(String s) {
 
 		Stack<Character> stack = new Stack<Character>();
