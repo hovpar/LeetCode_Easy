@@ -1,7 +1,7 @@
 package p083_remove_duplicates_from_sorted_list;
 
 
-class RemoveDuplicates {
+class Solution {
 
 	ListNode deleteDuplicates(ListNode head) {
 

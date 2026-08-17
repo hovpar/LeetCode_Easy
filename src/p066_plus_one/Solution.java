@@ -1,8 +1,8 @@
 package p066_plus_one;
 
-class PlusOne {
+class Solution {
 
-    public static int[] plusOne(int[] digits) {
+    int[] plusOne(int[] digits) {
 
         for (int i = digits.length - 1; i >= 0; i--) {
             if (digits[i] < 9) {

@@ -1,6 +1,6 @@
 package p104_maximum_depth_of_binary_tree;
 
-class MaxDepthOfBinaryTree {
+class Solution {
 
 	int maxDepth(TreeNode root) {
 

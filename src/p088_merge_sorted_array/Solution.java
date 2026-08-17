@@ -1,10 +1,10 @@
 package p088_merge_sorted_array;
 
-class MergeSortedArray {
+class Solution {
 
-	static void merge(int[] nums1, int m, int[] nums2, int n) {
-	    var i = m - 1;         
-        var j = n - 1;         
+    void merge(int[] nums1, int m, int[] nums2, int n) {
+        var i = m - 1;
+        var j = n - 1;
         var k = m + n - 1; //or
         //var k=nums1.length-1;
 
@@ -18,5 +18,5 @@ class MergeSortedArray {
             }
             k--;
         }
-	}
+    }
 }

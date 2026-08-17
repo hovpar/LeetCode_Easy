@@ -7,7 +7,8 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class SolutionTest {
-    Solution solution = new Solution();
+
+    private final Solution solution = new Solution();
 
     @Test
     void testSingleRow() {
@@ -23,8 +24,8 @@ class SolutionTest {
 
     @Test
     void testMultipleRows() {
-        List<List<Integer>> result = List.of(List.of(1), List.of(1, 1), List.of(1, 2, 1), List.of(1, 3, 3, 1),
-                List.of(1, 4, 6, 4, 1));
+        List<List<Integer>> result = List
+                .of(List.of(1), List.of(1, 1), List.of(1, 2, 1), List.of(1, 3, 3, 1), List.of(1, 4, 6, 4, 1));
 
         assertEquals(result, solution.generate(5));
     }

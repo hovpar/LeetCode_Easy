@@ -1,15 +1,14 @@
 package p111_minimum_depth_of_binary_tree;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
 import org.junit.jupiter.api.Test;
 
-
 class SolutionTest {
-	
+
     TreeNode arrayToBinTree(Integer[] array) {
         if (array == null || array.length == 0 || array[0] == null) {
             return null;
@@ -40,31 +39,33 @@ class SolutionTest {
 
         return root;
     }
-	Solution solution = new Solution();
 
-	@Test
-	void balancedTreeWithTwoLevels() {
-		Integer[]array = {3,9,20,null,null,15,7};
-		TreeNode root = arrayToBinTree(array);
-		assertEquals(2, solution.minDepth(root));
-	}
-	
-	@Test
-	void skewedRightTree() {
-		Integer[]array = {2,null,3,null,4,null,5,null,6};
-		TreeNode root = arrayToBinTree(array);
-		assertEquals(5, solution.minDepth(root));
-	}
-	@Test
+    private final Solution solution = new Solution();
+
+    @Test
+    void balancedTreeWithTwoLevels() {
+        Integer[] array = { 3, 9, 20, null, null, 15, 7 };
+        TreeNode root = arrayToBinTree(array);
+        assertEquals(2, solution.minDepth(root));
+    }
+
+    @Test
+    void skewedRightTree() {
+        Integer[] array = { 2, null, 3, null, 4, null, 5, null, 6 };
+        TreeNode root = arrayToBinTree(array);
+        assertEquals(5, solution.minDepth(root));
+    }
+
+    @Test
     void leftHeavyTree() {
-        Integer[] array = {1, 2, null, 3};
+        Integer[] array = { 1, 2, null, 3 };
         TreeNode root = arrayToBinTree(array);
         assertEquals(3, solution.minDepth(root));
     }
 
     @Test
     void fullBalancedTree() {
-        Integer[] array = {1, 2, 3, 4, 5, 6, 7};
+        Integer[] array = { 1, 2, 3, 4, 5, 6, 7 };
         TreeNode root = arrayToBinTree(array);
         assertEquals(3, solution.minDepth(root));
     }
