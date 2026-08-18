@@ -1,0 +1,54 @@
+package p119_pascals_triangle_ii;
+
+import java.util.ArrayList;
+import java.util.List;
+
+class SolutionVariants {
+	
+	interface Solver{
+		List<Integer> getRow(int rowIndex);
+	}
+	
+	static class RecursiveSolver implements Solver{
+	    // Time O(n^2) space O(n)
+	    public List<Integer> getRow(int rowIndex) {
+
+	        List<Integer> current = new ArrayList<>();
+
+	        current.add(1);
+
+	        if (rowIndex == 0) {
+	            return current;
+	        }
+	        var prev = getRow(rowIndex - 1);
+
+	        for (int i = 1; i < rowIndex; i++) {
+	            current.add(prev.get(i - 1) + prev.get(i));
+	        }
+	        current.add(1);
+	        return current;
+
+	    }
+	}
+	
+	static class MathFormulaSolver implements Solver{
+	    public List<Integer> getRow(int n) {
+
+	        List<Integer> res = new ArrayList<>();
+
+	        // nC0 = 1
+	        int prev = 1;
+	        res.add(prev);
+
+	        for (int i = 1; i <= n; i++) {
+
+	            // nCr = (nCr-1 * (n - r + 1))/r
+	            int curr = (prev * (n - i + 1)) / i;
+	            res.add(curr);
+	            prev = curr;
+	        }
+	        return res;
+	    }
+	}
+
+}
