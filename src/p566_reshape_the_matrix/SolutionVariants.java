@@ -7,6 +7,7 @@ class SolutionVariants {
     }
 
     static class FlattenThenReshapeSolver implements Solver {
+        @Override
         public int[][] matrixReshape(int[][] mat, int r, int c) {
 
             int m = mat.length, n = mat[0].length;
@@ -35,6 +36,7 @@ class SolutionVariants {
     }
 
     static class DirectIndexMappingSolver implements Solver {
+        @Override
         public int[][] matrixReshape(int[][] mat, int r, int c) {
 
             int m = mat.length, n = mat[0].length;
