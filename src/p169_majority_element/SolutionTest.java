@@ -1,47 +1,68 @@
 package p169_majority_element;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-import org.junit.jupiter.api.Test;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+import java.util.stream.Stream;
+
+import org.junit.jupiter.api.Named;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class SolutionTest {
 
-    private final Solution solution = new Solution();
+    @Target(ElementType.METHOD)
+    @Retention(RetentionPolicy.RUNTIME)
+    @ParameterizedTest(name = "{0}")
+    @MethodSource("solvers")
+    @interface TestEachSolver {
+    }
 
-    @Test
-    void testWhenArrayHasTwoMajorityCandidates() {
+    static Stream<Arguments> solvers() {
+        return Stream.of(
+                arguments(Named.of("moore voting solver", new SolutionVariants.MooreVotingSolver())),
+                arguments(Named.of("sorting solver", new SolutionVariants.SortingSolver())));
+    }
+
+    @TestEachSolver
+    void testWhenArrayHasTwoMajorityCandidates(SolutionVariants.Solver solver) {
         int[] nums = { 3, 2, 3 };
-        assertEquals(3, solution.majorityElement(nums));
+        assertEquals(3, solver.majorityElement(nums));
     }
 
-    @Test
-    void testWhenMajorityIsAtEnd() {
+    @TestEachSolver
+    void testWhenMajorityIsAtEnd(SolutionVariants.Solver solver) {
         int[] nums = { 2, 2, 1, 1, 1, 2, 2 };
-        assertEquals(2, solution.majorityElement(nums));
+        assertEquals(2, solver.majorityElement(nums));
     }
 
-    @Test
-    void testWithSingleElementArray() {
+    @TestEachSolver
+    void testWithSingleElementArray(SolutionVariants.Solver solver) {
         int[] nums = { 1 };
-        assertEquals(1, solution.majorityElement(nums));
+        assertEquals(1, solver.majorityElement(nums));
     }
 
-    @Test
-    void testWithAllElementsSame() {
+    @TestEachSolver
+    void testWithAllElementsSame(SolutionVariants.Solver solver) {
         int[] nums = { 7, 7, 7, 7, 7 };
-        assertEquals(7, solution.majorityElement(nums));
+        assertEquals(7, solver.majorityElement(nums));
     }
 
-    @Test
-    void testWhenMajorityAppearsJustOverHalf() {
+    @TestEachSolver
+    void testWhenMajorityAppearsJustOverHalf(SolutionVariants.Solver solver) {
         int[] nums = { 5, 5, 5, 2, 2 };
-        assertEquals(5, solution.majorityElement(nums));
+        assertEquals(5, solver.majorityElement(nums));
     }
 
-    @Test
-    void testWhenArrayIsLargeAndMajorityInMiddle() {
+    @TestEachSolver
+    void testWhenArrayIsLargeAndMajorityInMiddle(SolutionVariants.Solver solver) {
         int[] nums = { 4, 1, 4, 2, 4, 3, 4, 4, 4 };
-        assertEquals(4, solution.majorityElement(nums));
+        assertEquals(4, solver.majorityElement(nums));
     }
 
 }

@@ -64,13 +64,20 @@ class SolutionVariants {
         @Override
         public int findLHS(int[] nums) {
             Map<Integer, Integer> frequencies = new HashMap<>();
-
+            // Count occurrences of every number.
             for (int num : nums) {
-                frequencies.merge(num, 1, Integer::sum);
+                if (frequencies.containsKey(num)) {
+                    frequencies.put(num, frequencies.get(num) + 1);
+                } else {
+                    frequencies.put(num, 1);
+                }
+                //or just
+                //frequencies.merge(num, 1, Integer::sum);
+
             }
 
             var lhs = 0;
-
+            // Check every pair of consecutive values.
             for (var entry : frequencies.entrySet()) {
                 var next = frequencies.get(entry.getKey() + 1);
 

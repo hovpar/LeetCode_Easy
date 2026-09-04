@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 class SolutionTest {
 
-    Solution solution = new Solution();
+    private final Solution solution = new Solution();
 
     @Test
     void testNo1Bits() {
