@@ -3,21 +3,21 @@ package p202_happy_number;
 class Solution {
 
     boolean isHappy(int n) {
-//        var length = (int) Math.log10(n) + 1;
-//
-//        var squareSum = 0;
-//
-//        for (int i = 0; i < length; i++) {
-//            squareSum += (n % 10) * (n % 10);
-//            n /= 10;
-//        }
-//        if (squareSum == 1 || squareSum == 7) {
-//            return true;
-//        } else if (squareSum < 10) {
-//            return false;
-//        } else {
-//            return isHappy(squareSum);
-//        }
+        //        var length = (int) Math.log10(n) + 1;
+        //
+        //        var squareSum = 0;
+        //
+        //        for (int i = 0; i < length; i++) {
+        //            squareSum += (n % 10) * (n % 10);
+        //            n /= 10;
+        //        }
+        //        if (squareSum == 1 || squareSum == 7) {
+        //            return true;
+        //        } else if (squareSum < 10) {
+        //            return false;
+        //        } else {
+        //            return isHappy(squareSum);
+        //        }
         // 7 -> 49 -> 97 -> 130 -> 10 -> 1
         if (n == 1 || n == 7) {
             return true;

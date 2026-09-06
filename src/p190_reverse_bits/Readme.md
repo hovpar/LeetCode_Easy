@@ -38,7 +38,7 @@ Explanation:
 
 ##### Constraints:
 
-- 0 <= n <= 2^31 - 2
+- 0 <= n <= 2<sup>31</sup> - 2
 - n is even.
  
 
