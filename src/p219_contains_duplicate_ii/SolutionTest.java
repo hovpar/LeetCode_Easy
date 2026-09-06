@@ -2,66 +2,86 @@ package p219_contains_duplicate_ii;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Stream;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Named;
 import org.junit.jupiter.api.Timeout;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class SolutionTest {
 
-    Solution solution = new Solution();
-
-    @Test
-    void testSimpleTrueCases() {
-        assertTrue(solution.containsNearbyDuplicate(new int[] { 1, 2, 3, 1 }, 3));
-        assertTrue(solution.containsNearbyDuplicate(new int[] { 1, 0, 1, 1 }, 1));
-        assertTrue(solution.containsNearbyDuplicate(new int[] { 99, 99 }, 2));
+    @Target(ElementType.METHOD)
+    @Retention(RetentionPolicy.RUNTIME)
+    @ParameterizedTest(name = "{0}")
+    @MethodSource("solvers")
+    @interface TestEachSolver {
     }
 
-    @Test
-    void testSimpleFalseCases() {
-        assertFalse(solution.containsNearbyDuplicate(new int[] { 1, 2, 3, 1, 2, 3 }, 2));
-        assertFalse(solution.containsNearbyDuplicate(new int[] { 1, 2, 3, 4 }, 1));
-        assertFalse(solution.containsNearbyDuplicate(new int[] { 1 }, 5));
+    static Stream<Arguments> solvers() {
+        return Stream.of(
+                arguments(Named.of("brute force solver", new SolutionVariants.BruteForceSolver())),
+                arguments(Named.of("hashset solver", new SolutionVariants.HashSetSolver())));
     }
 
-    @Test
-    void testAdjacentDuplicates() {
-        assertTrue(solution.containsNearbyDuplicate(new int[] { 4, 4, 4 }, 1));
+    @TestEachSolver
+    void testSimpleTrueCases(SolutionVariants.Solver solver) {
+        assertTrue(solver.containsNearbyDuplicate(new int[] { 1, 2, 3, 1 }, 3));
+        assertTrue(solver.containsNearbyDuplicate(new int[] { 1, 0, 1, 1 }, 1));
+        assertTrue(solver.containsNearbyDuplicate(new int[] { 99, 99 }, 2));
     }
 
-    @Test
-    void testKZero() {
+    @TestEachSolver
+    void testSimpleFalseCases(SolutionVariants.Solver solver) {
+        assertFalse(solver.containsNearbyDuplicate(new int[] { 1, 2, 3, 1, 2, 3 }, 2));
+        assertFalse(solver.containsNearbyDuplicate(new int[] { 1, 2, 3, 4 }, 1));
+        assertFalse(solver.containsNearbyDuplicate(new int[] { 1 }, 5));
+    }
+
+    @TestEachSolver
+    void testAdjacentDuplicates(SolutionVariants.Solver solver) {
+        assertTrue(solver.containsNearbyDuplicate(new int[] { 4, 4, 4 }, 1));
+    }
+
+    @TestEachSolver
+    void testKZero(SolutionVariants.Solver solver) {
         // Only identical index pairs (i==j) allowed -> impossible -> always false
-        assertFalse(solution.containsNearbyDuplicate(new int[] { 1, 1 }, 0));
+        assertFalse(solver.containsNearbyDuplicate(new int[] { 1, 1 }, 0));
     }
 
-    @Test
-    void testLargeK() {
+    @TestEachSolver
+    void testLargeK(SolutionVariants.Solver solver) {
         // k >= array length -> equivalent to: "any duplicates?"
-        assertTrue(solution.containsNearbyDuplicate(new int[] { 1, 2, 3, 4, 2 }, 100));
+        assertTrue(solver.containsNearbyDuplicate(new int[] { 1, 2, 3, 4, 2 }, 100));
     }
 
-    @Test
-    void testNegativeNumbers() {
-        assertTrue(solution.containsNearbyDuplicate(new int[] { -1, -2, -3, -1 }, 3));
+    @TestEachSolver
+    void testNegativeNumbers(SolutionVariants.Solver solver) {
+        assertTrue(solver.containsNearbyDuplicate(new int[] { -1, -2, -3, -1 }, 3));
     }
 
-    @Test
-    void testNoDuplicatesAtAll() {
-        assertFalse(solution.containsNearbyDuplicate(new int[] { 10, 20, 30, 40, 50 }, 10));
+    @TestEachSolver
+    void testNoDuplicatesAtAll(SolutionVariants.Solver solver) {
+        assertFalse(solver.containsNearbyDuplicate(new int[] { 10, 20, 30, 40, 50 }, 10));
     }
 
-    @Test
-    void testDuplicateJustOutsideRange() {
-        assertFalse(solution.containsNearbyDuplicate(new int[] { 1, 2, 3, 1 }, 2));
+    @TestEachSolver
+    void testDuplicateJustOutsideRange(SolutionVariants.Solver solver) {
+        assertFalse(solver.containsNearbyDuplicate(new int[] { 1, 2, 3, 1 }, 2));
     }
 
     // Timeout test for brute-force solution
-    @Test
+    @TestEachSolver
     @Timeout(value = 42, unit = TimeUnit.MILLISECONDS)
-    void testBruteForceWouldTimeout() {
+    void testBruteForceWouldTimeout(SolutionVariants.Solver solver) {
         int n = 20000; // 20k -> 20k * k nested loops
         int k = 10000;
         int[] bigArray = new int[n];
@@ -72,7 +92,7 @@ class SolutionTest {
         }
 
         // Should run quickly with the optimized sliding-window solution
-        assertFalse(solution.containsNearbyDuplicate(bigArray, k));
+        assertFalse(solver.containsNearbyDuplicate(bigArray, k));
     }
 
 }
