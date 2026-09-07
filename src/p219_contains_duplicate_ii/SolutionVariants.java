@@ -9,6 +9,7 @@ class SolutionVariants {
     }
 
     // time: O(n*k), space: O(1)
+    // Fails Time-out test!
     static class BruteForceSolver implements Solver {
         @Override
         public boolean containsNearbyDuplicate(int[] nums, int k) {
