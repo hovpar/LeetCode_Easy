@@ -4,21 +4,38 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+import java.util.function.Supplier;
+import java.util.stream.Stream;
+
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class MyStackTest {
 
-    private MyStack stack;
-
-    @BeforeEach
-    void setup() {
-        stack = new MyStack();
+    @Target(ElementType.METHOD)
+    @Retention(RetentionPolicy.RUNTIME)
+    @ParameterizedTest(name = "{0}")
+    @MethodSource("stacks")
+    @interface TestEachSolver {
     }
 
-    @Test
-    void testPushAndTop() {
+    static Stream<Arguments> stacks() {
+        return Stream.of(
+                arguments("two queues", (Supplier<MyStack>) TwoQueuesStack::new),
+                arguments("one queue", (Supplier<MyStack>) OneQueueStack::new));
+    }
+
+    @TestEachSolver
+    void testPushAndTop(String name, Supplier<MyStack> factory) {
+        MyStack stack = factory.get();
+
         stack.push(1);
         assertEquals(1, stack.top());
 
@@ -29,8 +46,10 @@ class MyStackTest {
         assertEquals(3, stack.top());
     }
 
-    @Test
-    void testPushAndPop() {
+    @TestEachSolver
+    void testPushAndPop(String name, Supplier<MyStack> factory) {
+        MyStack stack = factory.get();
+
         stack.push(10);
         stack.push(20);
         stack.push(30);
@@ -41,8 +60,9 @@ class MyStackTest {
         assertTrue(stack.empty());
     }
 
-    @Test
-    void testInterleavedOperations() {
+    @TestEachSolver
+    void testInterleavedOperations(String name, Supplier<MyStack> factory) {
+        MyStack stack = factory.get();
 
         stack.push(5);
         stack.push(7);
@@ -59,8 +79,10 @@ class MyStackTest {
         assertTrue(stack.empty());
     }
 
-    @Test
-    void testSingleElement() {
+    @TestEachSolver
+    void testSingleElement(String name, Supplier<MyStack> factory) {
+        MyStack stack = factory.get();
+
         stack.push(42);
 
         assertFalse(stack.empty());
@@ -69,8 +91,9 @@ class MyStackTest {
         assertTrue(stack.empty());
     }
 
-    @Test
-    void testEmptyStack() {
+    @TestEachSolver
+    void testEmptyStack(String name, Supplier<MyStack> factory) {
+        MyStack stack = factory.get();
 
         assertTrue(stack.empty());
 
@@ -80,8 +103,9 @@ class MyStackTest {
         assertThrows(NullPointerException.class, stack::top);
     }
 
-    @Test
-    void longSequenceTest() {
+    @TestEachSolver
+    void longSequenceTest(String name, Supplier<MyStack> factory) {
+        MyStack stack = factory.get();
 
         for (int i = 1; i <= 1000; i++) {
             stack.push(i);
