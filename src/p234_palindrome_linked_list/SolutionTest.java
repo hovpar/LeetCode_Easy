@@ -2,51 +2,72 @@ package p234_palindrome_linked_list;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-import org.junit.jupiter.api.Test;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+import java.util.stream.Stream;
+
+import org.junit.jupiter.api.Named;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class SolutionTest {
-    private final Solution s = new Solution();
+    @Target(ElementType.METHOD)
+    @Retention(RetentionPolicy.RUNTIME)
+    @ParameterizedTest(name = "{0}")
+    @MethodSource("solvers")
+    @interface TestEachSolver {
+    }
 
-    @Test
-    void returnsTrueForEvenLengthPalindrome() {
+    static Stream<Arguments> solvers() {
+        return Stream.of(
+                arguments(Named.of("stack solver", new SolutionVariants.StackSolver())),
+                arguments(Named.of("two-pointer solver", new SolutionVariants.TwoPointerSolver())));
+    }
+
+    @TestEachSolver
+    void returnsTrueForEvenLengthPalindrome(SolutionVariants.Solver solver) {
         ListNode head = new ListNode(1, new ListNode(2, new ListNode(2, new ListNode(1))));
-        assertTrue(s.isPalindrome(head));
+        assertTrue(solver.isPalindrome(head));
     }
 
-    @Test
-    void returnsFalseForNonPalindrome() {
+    @TestEachSolver
+    void returnsFalseForNonPalindrome(SolutionVariants.Solver solver) {
         ListNode head = new ListNode(1, new ListNode(2));
-        assertFalse(s.isPalindrome(head));
+        assertFalse(solver.isPalindrome(head));
     }
 
-    @Test
-    void returnsFalseForNearPalindrome() {
+    @TestEachSolver
+    void returnsFalseForNearPalindrome(SolutionVariants.Solver solver) {
         ListNode head = new ListNode(1, new ListNode(1, new ListNode(2, new ListNode(1))));
-        assertFalse(s.isPalindrome(head));
+        assertFalse(solver.isPalindrome(head));
     }
 
-    @Test
-    void returnsTrueForSingleNode() {
+    @TestEachSolver
+    void returnsTrueForSingleNode(SolutionVariants.Solver solver) {
         ListNode head = new ListNode(5);
-        assertTrue(s.isPalindrome(head));
+        assertTrue(solver.isPalindrome(head));
     }
 
-    @Test
-    void returnsTrueForOddLengthPalindrome() {
+    @TestEachSolver
+    void returnsTrueForOddLengthPalindrome(SolutionVariants.Solver solver) {
         ListNode head = new ListNode(1, new ListNode(2, new ListNode(1)));
-        assertTrue(s.isPalindrome(head));
+        assertTrue(solver.isPalindrome(head));
     }
 
-    @Test
-    void returnsTrueForEmptyList() {
-        assertTrue(s.isPalindrome(null));
+    @TestEachSolver
+    void returnsTrueForEmptyList(SolutionVariants.Solver solver) {
+        assertTrue(solver.isPalindrome(null));
     }
 
-    @Test
-    void returnsTrueForLongPalindrome() {
+    @TestEachSolver
+    void returnsTrueForLongPalindrome(SolutionVariants.Solver solver) {
         ListNode head = new ListNode(1, new ListNode(3, new ListNode(5, new ListNode(3, new ListNode(1)))));
-        assertTrue(s.isPalindrome(head));
+        assertTrue(solver.isPalindrome(head));
     }
 
 }
