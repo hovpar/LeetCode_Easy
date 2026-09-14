@@ -12,6 +12,7 @@ Return *the merged tree*.
 
 ####Example 1:
 
+<img src="merge.jpg" alt="hint" style="max-width: 100%; height: auto;"/>
 
 >**Input:** root1 = [1,3,2,5], root2 = [2,1,3,null,4,null,7]  
 **Output:** [3,4,5,5,4,null,7]
