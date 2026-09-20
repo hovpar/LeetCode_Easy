@@ -1,4 +1,4 @@
-package p643_maximum_average_sugarray_i;
+package p643_maximum_average_subarray_i;
 
 class SolutionVariants {
 

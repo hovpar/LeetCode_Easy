@@ -1,4 +1,4 @@
-package p643_maximum_average_sugarray_i;
+package p643_maximum_average_subarray_i;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
