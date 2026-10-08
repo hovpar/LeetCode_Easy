@@ -10,7 +10,7 @@ Given an `m x n` integer matrix `img` representing the grayscale of an image, re
 
 #### Example 1:
 
-<img src="smoother-grid.jpg" alt="hint" style="max-width: 100%; height: auto;"/>
+<img src="smooth-grid.jpg" alt="hint" style="max-width: 100%; height: auto;"/>
 
 >**Input:** img = [[1,1,1],[1,0,1],[1,1,1]]  
 **Output:** [[0,0,0],[0,0,0],[0,0,0]]  
@@ -21,7 +21,7 @@ For the point (1,1): floor(8/9) = floor(0.88888889) = 0
 
 #### Example 2:
 
-<img src="smoother-grid.jpg" alt="hint" style="max-width: 100%; height: auto;"/>
+<img src="smooth2-grid.jpg" alt="hint" style="max-width: 100%; height: auto;"/>
 
 >**Input:** img = [[100,200,100],[200,50,200],[100,200,100]]  
 **Output:** [[137,141,137],[141,138,141],[137,141,137]]  
