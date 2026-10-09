@@ -2,51 +2,72 @@ package p290_word_pattern;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-import org.junit.jupiter.api.Test;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+import java.util.stream.Stream;
+
+import org.junit.jupiter.api.Named;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class SolutionTest {
 
-    private final Solution s = new Solution();
-
-    @Test
-    void testValidPattern() {
-        assertTrue(s.wordPattern("abba", "dog cat cat dog"));
+    @Target(ElementType.METHOD)
+    @Retention(RetentionPolicy.RUNTIME)
+    @ParameterizedTest(name = "{0}")
+    @MethodSource("solvers")
+    @interface TestEachSolver {
     }
 
-    @Test
-    void testInvalidPatternMapping() {
-        assertFalse(s.wordPattern("abba", "dog cat cat fish"));
+    static Stream<Arguments> solvers() {
+        return Stream.of(
+                arguments(Named.of("single map solver", new SolutionVariants.SingleMapSolver())),
+                arguments(Named.of("bidirectional map solver", new SolutionVariants.BidirectionalMapSolver())));
     }
 
-    @Test
-    void testInvalidWordReuse() {
-        assertFalse(s.wordPattern("aaaa", "dog cat cat dog"));
+    @TestEachSolver
+    void testValidPattern(SolutionVariants.Solver solver) {
+        assertTrue(solver.wordPattern("abba", "dog cat cat dog"));
     }
 
-    @Test
-    void testSingleCharacter() {
-        assertTrue(s.wordPattern("a", "dog"));
+    @TestEachSolver
+    void testInvalidPatternMapping(SolutionVariants.Solver solver) {
+        assertFalse(solver.wordPattern("abba", "dog cat cat fish"));
     }
 
-    @Test
-    void testLengthMismatch() {
-        assertFalse(s.wordPattern("ab", "dog"));
+    @TestEachSolver
+    void testInvalidWordReuse(SolutionVariants.Solver solver) {
+        assertFalse(solver.wordPattern("aaaa", "dog cat cat dog"));
     }
 
-    @Test
-    void testSameWordsDifferentPattern() {
-        assertFalse(s.wordPattern("ab", "dog dog"));
+    @TestEachSolver
+    void testSingleCharacter(SolutionVariants.Solver solver) {
+        assertTrue(solver.wordPattern("a", "dog"));
     }
 
-    @Test
-    void testDifferentWordsSamePattern() {
-        assertTrue(s.wordPattern("ab", "dog cat"));
+    @TestEachSolver
+    void testLengthMismatch(SolutionVariants.Solver solver) {
+        assertFalse(solver.wordPattern("ab", "dog"));
     }
 
-    @Test
-    void testEmptyStrings() {
-        assertTrue(s.wordPattern("", ""));
+    @TestEachSolver
+    void testSameWordsDifferentPattern(SolutionVariants.Solver solver) {
+        assertFalse(solver.wordPattern("ab", "dog dog"));
+    }
+
+    @TestEachSolver
+    void testDifferentWordsSamePattern(SolutionVariants.Solver solver) {
+        assertTrue(solver.wordPattern("ab", "dog cat"));
+    }
+
+    @TestEachSolver
+    void testEmptyStrings(SolutionVariants.Solver solver) {
+        assertTrue(solver.wordPattern("", ""));
     }
 
 }

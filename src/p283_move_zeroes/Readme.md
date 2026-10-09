@@ -25,8 +25,12 @@ Given an integer array `nums`, move all `0`'s to the end of it while maintaining
 
 **Follow up:** Could you minimize the total number of operations done?
 
-**Hint 1**  
+<details>
+<summary>Hint 1</summary>
 In-place means we should not be allocating any space for extra array. But we are allowed to modify the existing array. However, as a first step, try coming up with a solution that makes use of additional space. For this problem as well, first apply the idea discussed using an additional array and the in-place solution will pop up eventually.
  
-**Hint 2**  
+</details>
+<details>
+<summary>Hint 2</summary>  
 A two-pointer approach could be helpful here. The idea would be to have one pointer for iterating the array and another pointer that just works on the non-zero elements of the array.
+</details>

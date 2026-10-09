@@ -36,5 +36,7 @@ In all outcomes, your friend wins.
 
 - 1 <= n <= 2<sup>31</sup> - 1
 
-**Hint 1**  
+<details>
+<summary>Hint 1</summary> 
 If there are 5 stones in the heap, could you figure out a way to remove the stones such that you will always be the winner?
+</details>
