@@ -2,66 +2,87 @@ package p367_valid_perfect_square;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-import org.junit.jupiter.api.Test;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+import java.util.stream.Stream;
+
+import org.junit.jupiter.api.Named;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class SolutionTest {
 
-    private final Solution s = new Solution();
-
-    @Test
-    void testZeroIsPerfectSquare() {
-        assertTrue(s.isPerfectSquare(0)); // 0 * 0
+    @Target(ElementType.METHOD)
+    @Retention(RetentionPolicy.RUNTIME)
+    @ParameterizedTest(name = "{0}")
+    @MethodSource("solvers")
+    @interface TestEachSolver {
     }
 
-    @Test
-    void testOneIsPerfectSquare() {
-        assertTrue(s.isPerfectSquare(1)); // 1 * 1
+    static Stream<Arguments> solvers() {
+        return Stream.of(
+                arguments(Named.of("odd number sum solver", new SolutionVariants.OddNumberSumSolver())),
+                arguments(Named.of("binary search solver", new SolutionVariants.BinarySearchSolver())));
     }
 
-    @Test
-    void testSmallPerfectSquares() {
-        assertTrue(s.isPerfectSquare(4));
-        assertTrue(s.isPerfectSquare(9));
-        assertTrue(s.isPerfectSquare(16));
-        assertTrue(s.isPerfectSquare(25));
+    @TestEachSolver
+    void testZeroIsPerfectSquare(SolutionVariants.Solver solver) {
+        assertTrue(solver.isPerfectSquare(0)); // 0 * 0
     }
 
-    @Test
-    void testInvalidPerfectSquares() {
-        assertFalse(s.isPerfectSquare(2));
-        assertFalse(s.isPerfectSquare(3));
-        assertFalse(s.isPerfectSquare(5));
-        assertFalse(s.isPerfectSquare(14));
+    @TestEachSolver
+    void testOneIsPerfectSquare(SolutionVariants.Solver solver) {
+        assertTrue(solver.isPerfectSquare(1)); // 1 * 1
     }
 
-    @Test
-    void testNumbersJustBelowAndAboveSquare() {
+    @TestEachSolver
+    void testSmallPerfectSquares(SolutionVariants.Solver solver) {
+        assertTrue(solver.isPerfectSquare(4));
+        assertTrue(solver.isPerfectSquare(9));
+        assertTrue(solver.isPerfectSquare(16));
+        assertTrue(solver.isPerfectSquare(25));
+    }
+
+    @TestEachSolver
+    void testInvalidPerfectSquares(SolutionVariants.Solver solver) {
+        assertFalse(solver.isPerfectSquare(2));
+        assertFalse(solver.isPerfectSquare(3));
+        assertFalse(solver.isPerfectSquare(5));
+        assertFalse(solver.isPerfectSquare(14));
+    }
+
+    @TestEachSolver
+    void testNumbersJustBelowAndAboveSquare(SolutionVariants.Solver solver) {
         // around 15^2 = 225
-        assertFalse(s.isPerfectSquare(224));
-        assertTrue(s.isPerfectSquare(225));
-        assertFalse(s.isPerfectSquare(226));
+        assertFalse(solver.isPerfectSquare(224));
+        assertTrue(solver.isPerfectSquare(225));
+        assertFalse(solver.isPerfectSquare(226));
     }
 
-    @Test
-    void testLargePerfectSquareNearIntMax() {
+    @TestEachSolver
+    void testLargePerfectSquareNearIntMax(SolutionVariants.Solver solver) {
         // 46340^2 = 2,147,395,600 (fits in int)
-        assertTrue(s.isPerfectSquare(2147395600));
+        assertTrue(solver.isPerfectSquare(2147395600));
     }
 
-    @Test
-    void testLargeNonSquaresNearLargeSquare() {
-        assertFalse(s.isPerfectSquare(2147395599));
-        assertFalse(s.isPerfectSquare(2147395601));
+    @TestEachSolver
+    void testLargeNonSquaresNearLargeSquare(SolutionVariants.Solver solver) {
+        assertFalse(solver.isPerfectSquare(2147395599));
+        assertFalse(solver.isPerfectSquare(2147395601));
     }
 
-    @Test
-    void testIntMaxIsNotPerfectSquare() {
-        assertFalse(s.isPerfectSquare(Integer.MAX_VALUE)); // 2,147,483,647
+    @TestEachSolver
+    void testIntMaxIsNotPerfectSquare(SolutionVariants.Solver solver) {
+        assertFalse(solver.isPerfectSquare(Integer.MAX_VALUE)); // 2,147,483,647
     }
 
-    @Test
-    void testPrimeIsNotPerfectSquare() {
-        assertFalse(s.isPerfectSquare(97));
+    @TestEachSolver
+    void testPrimeIsNotPerfectSquare(SolutionVariants.Solver solver) {
+        assertFalse(solver.isPerfectSquare(97));
     }
 }
