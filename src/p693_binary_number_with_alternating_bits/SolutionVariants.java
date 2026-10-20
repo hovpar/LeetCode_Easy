@@ -12,10 +12,10 @@ class SolutionVariants {
             boolean res = true;
 
             while (n > 0 && res) {
-                var cur = n % 2;
+                var currentBit = n % 2;
                 n /= 2;
-                var prev = n % 2;
-                if (cur == prev) {
+                var nextBit = n % 2;
+                if (currentBit == nextBit) {
                     res = false;
                 }
             }
