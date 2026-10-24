@@ -3,6 +3,8 @@ package p257_binary_tree_paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import common.TreeNode;
+
 class SolutionVariants {
 
     interface Solver {

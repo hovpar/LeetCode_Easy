@@ -1,5 +1,7 @@
 package p617_merge_two_binary_trees;
 
+import common.TreeNode;
+
 class Solution {
     public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
 

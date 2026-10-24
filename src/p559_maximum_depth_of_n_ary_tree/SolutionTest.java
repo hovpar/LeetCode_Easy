@@ -8,6 +8,8 @@ import java.util.Queue;
 
 import org.junit.jupiter.api.Test;
 
+import common.Node;
+
 class SolutionTest {
 
     @Test

@@ -2,6 +2,8 @@ package p234_palindrome_linked_list;
 
 import java.util.Stack;
 
+import common.ListNode;
+
 class SolutionVariants {
 
     interface Solver {

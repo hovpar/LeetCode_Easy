@@ -1,5 +1,7 @@
 package p671_second_minimum_node_in_a_bin_tree;
 
+import common.TreeNode;
+
 class Solution {
     public int findSecondMinimumValue(TreeNode root) {
         //the problem guarantees that a node has either 0 or 2 children

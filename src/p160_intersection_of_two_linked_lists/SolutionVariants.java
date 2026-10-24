@@ -1,5 +1,7 @@
 package p160_intersection_of_two_linked_lists;
 
+import common.ListNode;
+
 class SolutionVariants {
 
     interface Solver {

@@ -1,5 +1,7 @@
 package p203_remove_linked_list_elements;
 
+import common.ListNode;
+
 class SolutionVariants {
 
     interface Solver {

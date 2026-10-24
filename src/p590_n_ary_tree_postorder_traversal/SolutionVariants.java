@@ -6,6 +6,8 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 
+import common.Node;
+
 class SolutionVariants {
     interface Solver {
         List<Integer> postorder(Node root);

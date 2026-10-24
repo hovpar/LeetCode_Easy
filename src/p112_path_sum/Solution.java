@@ -1,5 +1,7 @@
 package p112_path_sum;
 
+import common.TreeNode;
+
 class Solution {
 
     boolean hasPathSum(TreeNode root, int targetSum) {

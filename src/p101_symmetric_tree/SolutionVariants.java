@@ -3,6 +3,8 @@ package p101_symmetric_tree;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import common.TreeNode;
+
 class SolutionVariants {
 
     interface Solver {

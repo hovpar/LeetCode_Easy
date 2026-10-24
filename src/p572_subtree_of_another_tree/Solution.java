@@ -1,5 +1,7 @@
 package p572_subtree_of_another_tree;
 
+import common.TreeNode;
+
 class Solution {
 
     public boolean isSubtree(TreeNode root, TreeNode subRoot) {

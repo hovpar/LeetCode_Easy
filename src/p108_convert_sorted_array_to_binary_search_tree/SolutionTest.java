@@ -1,19 +1,21 @@
 package p108_convert_sorted_array_to_binary_search_tree;
 
-
-import static org.junit.jupiter.api.Assertions.*;
-
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import common.TreeNode;
+
 class SolutionTest {
-	
-	private final Solution solution = new Solution();
+
+    private final Solution solution = new Solution();
 
     @Test
     public void testExample1() {
-        int[] nums = {-10, -3, 0, 5, 9};
+        int[] nums = { -10, -3, 0, 5, 9 };
         TreeNode root = solution.sortedArrayToBST(nums);
         assertTrue(isBalanced(root));
         assertTrue(isBST(root));
@@ -21,7 +23,7 @@ class SolutionTest {
 
     @Test
     public void testExample2() {
-        int[] nums = {1, 3};
+        int[] nums = { 1, 3 };
         TreeNode root = solution.sortedArrayToBST(nums);
         assertTrue(isBalanced(root));
         assertTrue(isBST(root));
@@ -36,7 +38,7 @@ class SolutionTest {
 
     @Test
     public void testSingleElement() {
-        int[] nums = {7};
+        int[] nums = { 7 };
         TreeNode root = solution.sortedArrayToBST(nums);
         assertNotNull(root);
         assertEquals(7, root.val);
@@ -50,8 +52,12 @@ class SolutionTest {
     }
 
     private boolean isBSTHelper(TreeNode node, int min, int max) {
-        if (node == null) return true;
-        if (node.val <= min || node.val >= max) return false;
+        if (node == null) {
+            return true;
+        }
+        if (node.val <= min || node.val >= max) {
+            return false;
+        }
         return isBSTHelper(node.left, min, node.val) && isBSTHelper(node.right, node.val, max);
     }
 
@@ -61,10 +67,14 @@ class SolutionTest {
     }
 
     private int checkHeight(TreeNode node) {
-        if (node == null) return 0;
+        if (node == null) {
+            return 0;
+        }
         int left = checkHeight(node.left);
         int right = checkHeight(node.right);
-        if (left == -1 || right == -1 || Math.abs(left - right) > 1) return -1;
+        if (left == -1 || right == -1 || Math.abs(left - right) > 1) {
+            return -1;
+        }
         return Math.max(left, right) + 1;
     }
 }

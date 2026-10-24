@@ -5,6 +5,8 @@ import java.util.Deque;
 import java.util.HashSet;
 import java.util.Set;
 
+import common.TreeNode;
+
 class SolutionVariants {
 
     interface Solver {

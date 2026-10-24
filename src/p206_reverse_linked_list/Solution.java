@@ -1,20 +1,22 @@
 package p206_reverse_linked_list;
 
+import common.ListNode;
+
 class Solution {
-//    public ListNode reverseList(ListNode head) {
-//        var current = head;
-//        ListNode prev = null;
-//
-//        while (current != null) {
-//            var temp = current.next;
-//            current.next = prev;
-//            prev = current;
-//            current = temp;
-//
-//        }
-//        return prev;
-//
-//    }
+    //    public ListNode reverseList(ListNode head) {
+    //        var current = head;
+    //        ListNode prev = null;
+    //
+    //        while (current != null) {
+    //            var temp = current.next;
+    //            current.next = prev;
+    //            prev = current;
+    //            current = temp;
+    //
+    //        }
+    //        return prev;
+    //
+    //    }
 
     // Recursive solution Time O(n) Memory O(n)
     ListNode reverseList(ListNode head) {

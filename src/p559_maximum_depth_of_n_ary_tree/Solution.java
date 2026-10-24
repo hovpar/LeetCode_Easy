@@ -1,5 +1,7 @@
 package p559_maximum_depth_of_n_ary_tree;
 
+import common.Node;
+
 class Solution {
     //recursive solution
     public int maxDepth(Node root) {

@@ -2,6 +2,8 @@ package p141_linked_list_cycle;
 
 import java.util.HashSet;
 
+import common.ListNode;
+
 class SolutionVariants {
 
     interface Solver {

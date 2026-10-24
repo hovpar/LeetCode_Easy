@@ -1,5 +1,7 @@
 package p530_minimum_absolute_difference_in_bst;
 
+import common.TreeNode;
+
 class Solution {
 
     public int getMinimumDifference(TreeNode root) {

@@ -1,8 +1,8 @@
-package p559_maximum_depth_of_n_ary_tree;
+package common;
 
 import java.util.List;
 
-class Node {
+public class Node {
     public int val;
     public List<Node> children;
 
@@ -17,4 +17,4 @@ class Node {
         val = _val;
         children = _children;
     }
-};
+}

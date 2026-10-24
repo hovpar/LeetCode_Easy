@@ -1,5 +1,7 @@
 package p100_same_tree;
 
+import common.TreeNode;
+
 class Solution {
 
     boolean isSameTree(TreeNode p, TreeNode q) {

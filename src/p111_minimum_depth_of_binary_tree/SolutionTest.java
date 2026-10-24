@@ -7,6 +7,8 @@ import java.util.Queue;
 
 import org.junit.jupiter.api.Test;
 
+import common.TreeNode;
+
 class SolutionTest {
 
     TreeNode arrayToBinTree(Integer[] array) {

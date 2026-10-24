@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
+import common.Node;
+
 class SolutionVariants {
 
     interface Solver {

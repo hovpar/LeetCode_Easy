@@ -1,5 +1,7 @@
 package p543_diameter_of_binary_tree;
 
+import common.TreeNode;
+
 class Solution {
     int res;
 

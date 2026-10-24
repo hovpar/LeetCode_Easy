@@ -7,6 +7,8 @@ import java.util.Queue;
 
 import org.junit.jupiter.api.Test;
 
+import common.TreeNode;
+
 class SolutionTest {
 
     private TreeNode arrayToBinTree(Integer[] array) {
@@ -21,7 +23,9 @@ class SolutionTest {
         int i = 1;
         while (i < array.length) {
             TreeNode current = queue.poll();
-            if (current == null) break;
+            if (current == null) {
+                break;
+            }
 
             // Left child
             if (i < array.length && array[i] != null) {

@@ -1,5 +1,7 @@
 package p563_binary_tree_tilt;
 
+import common.TreeNode;
+
 class Solution {
 
     public int findTilt(TreeNode root) {

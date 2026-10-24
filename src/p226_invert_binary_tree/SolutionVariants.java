@@ -3,6 +3,8 @@ package p226_invert_binary_tree;
 import java.util.ArrayDeque;
 import java.util.Queue;
 
+import common.TreeNode;
+
 class SolutionVariants {
 
     interface Solver {

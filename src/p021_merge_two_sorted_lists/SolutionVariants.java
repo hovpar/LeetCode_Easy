@@ -1,5 +1,7 @@
 package p021_merge_two_sorted_lists;
 
+import common.ListNode;
+
 class SolutionVariants {
 
     interface Solver {
