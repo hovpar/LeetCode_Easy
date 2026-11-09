@@ -34,6 +34,7 @@ Given an integer `x`, return `true` if `x` is a **palindrome**, and `false` othe
 **Follow up:** Could you solve it without converting the integer to a string?
 
 
-
-**Hint:**
+<details>
+<summary>Hint 1</summary>
 Beware of overflow when you reverse the integer.
+</details>
