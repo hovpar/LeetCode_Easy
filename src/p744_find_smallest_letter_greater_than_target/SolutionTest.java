@@ -1,82 +1,103 @@
 package p744_find_smallest_letter_greater_than_target;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-import org.junit.jupiter.api.Test;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+import java.util.stream.Stream;
+
+import org.junit.jupiter.api.Named;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class SolutionTest {
 
-    private final Solution s = new Solution();
-
-    @Test
-    void shouldReturnFirstLetterWhenTargetIsSmallerThanAllLetters() {
-        char[] letters = { 'c', 'f', 'j' };
-
-        assertEquals('c', s.nextGreatestLetter(letters, 'a'));
+    @Target(ElementType.METHOD)
+    @Retention(RetentionPolicy.RUNTIME)
+    @ParameterizedTest(name = "{0}")
+    @MethodSource("solvers")
+    @interface TestEachSolver {
     }
 
-    @Test
-    void shouldReturnNextLetterWhenTargetExists() {
-        char[] letters = { 'c', 'f', 'j' };
-
-        assertEquals('f', s.nextGreatestLetter(letters, 'c'));
+    static Stream<Arguments> solvers() {
+        return Stream.of(
+                arguments(Named.of("linear solver", new SolutionVariants.LinearSolver())),
+                arguments(Named.of("binary search solver", new SolutionVariants.BinarySearchSolver())));
     }
 
-    @Test
-    void shouldWrapAroundWhenTargetIsGreaterThanAllLetters() {
+    @TestEachSolver
+    void shouldReturnFirstLetterWhenTargetIsSmallerThanAllLetters(SolutionVariants.Solver solver) {
+        char[] letters = { 'c', 'f', 'j' };
+
+        assertEquals('c', solver.nextGreatestLetter(letters, 'a'));
+    }
+
+    @TestEachSolver
+    void shouldReturnNextLetterWhenTargetExists(SolutionVariants.Solver solver) {
+        char[] letters = { 'c', 'f', 'j' };
+
+        assertEquals('f', solver.nextGreatestLetter(letters, 'c'));
+    }
+
+    @TestEachSolver
+    void shouldWrapAroundWhenTargetIsGreaterThanAllLetters(SolutionVariants.Solver solver) {
         char[] letters = { 'x', 'x', 'y', 'y' };
 
-        assertEquals('x', s.nextGreatestLetter(letters, 'z'));
+        assertEquals('x', solver.nextGreatestLetter(letters, 'z'));
     }
 
-    @Test
-    void shouldReturnNextLetterWhenTargetIsBetweenLetters() {
+    @TestEachSolver
+    void shouldReturnNextLetterWhenTargetIsBetweenLetters(SolutionVariants.Solver solver) {
         char[] letters = { 'c', 'f', 'j' };
 
-        assertEquals('j', s.nextGreatestLetter(letters, 'g'));
+        assertEquals('j', solver.nextGreatestLetter(letters, 'g'));
     }
 
-    @Test
-    void shouldWrapAroundWhenTargetEqualsLastLetter() {
+    @TestEachSolver
+    void shouldWrapAroundWhenTargetEqualsLastLetter(SolutionVariants.Solver solver) {
         char[] letters = { 'c', 'f', 'j' };
 
-        assertEquals('c', s.nextGreatestLetter(letters, 'j'));
+        assertEquals('c', solver.nextGreatestLetter(letters, 'j'));
     }
 
-    @Test
-    void shouldHandleDuplicateLetters() {
+    @TestEachSolver
+    void shouldHandleDuplicateLetters(SolutionVariants.Solver solver) {
         char[] letters = { 'c', 'f', 'f', 'f', 'j' };
 
-        assertEquals('j', s.nextGreatestLetter(letters, 'f'));
+        assertEquals('j', solver.nextGreatestLetter(letters, 'f'));
     }
 
-    @Test
-    void shouldReturnFirstGreaterLetterAmongDuplicates() {
+    @TestEachSolver
+    void shouldReturnFirstGreaterLetterAmongDuplicates(SolutionVariants.Solver solver) {
         char[] letters = { 'c', 'c', 'f', 'f', 'j' };
 
-        assertEquals('f', s.nextGreatestLetter(letters, 'c'));
+        assertEquals('f', solver.nextGreatestLetter(letters, 'c'));
     }
 
-    @Test
-    void shouldHandleSingleElementArray() {
+    @TestEachSolver
+    void shouldHandleSingleElementArray(SolutionVariants.Solver solver) {
         char[] letters = { 'a' };
 
-        assertEquals('a', s.nextGreatestLetter(letters, 'a'));
+        assertEquals('a', solver.nextGreatestLetter(letters, 'a'));
     }
 
-    @Test
-    void shouldHandleSingleElementArrayWithSmallerTarget() {
+    @TestEachSolver
+    void shouldHandleSingleElementArrayWithSmallerTarget(SolutionVariants.Solver solver) {
         char[] letters = { 'a' };
 
-        assertEquals('a', s.nextGreatestLetter(letters, '`'));
+        assertEquals('a', solver.nextGreatestLetter(letters, '`'));
     }
 
-    @Test
-    void shouldHandleBoundaryCharacters() {
+    @TestEachSolver
+    void shouldHandleBoundaryCharacters(SolutionVariants.Solver solver) {
         char[] letters = { 'a', 'z' };
 
-        assertEquals('z', s.nextGreatestLetter(letters, 'a'));
-        assertEquals('a', s.nextGreatestLetter(letters, 'z'));
+        assertEquals('z', solver.nextGreatestLetter(letters, 'a'));
+        assertEquals('a', solver.nextGreatestLetter(letters, 'z'));
     }
 
 }
