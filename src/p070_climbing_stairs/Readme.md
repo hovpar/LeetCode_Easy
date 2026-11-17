@@ -28,5 +28,7 @@ Each time you can either climb `1` or `2` steps. In how many distinct ways can y
 
 - `1 <= n <= 45`
 
-##### Hint 1
+<details>
+<summary>Hint 1</summary>
 To reach nth step, what could have been your previous steps? (Think about the step sizes)
+</details>
