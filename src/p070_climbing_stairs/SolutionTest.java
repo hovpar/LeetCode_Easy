@@ -2,28 +2,45 @@ package p070_climbing_stairs;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.DisplayName;
+import java.util.List;
+import java.util.stream.Stream;
+
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class SolutionTest {
 
-    private final Solution solution = new Solution();
+    @ParameterizedTest(name = "{0}: {1} steps -> {2} ways")
+    @MethodSource("solverTestCases")
+    void shouldReturnNumberOfWays(String solverName, SolutionVariants.Solver solver, int steps, int expectedWays) {
+        assertEquals(expectedWays, solver.climbStairs(steps));
+    }
 
-    @ParameterizedTest(name = "{0} steps -> {1} ways")
-    @CsvSource({
-            "1, 1",
-            "2, 2",
-            "3, 3",
-            "4, 5",
-            "5, 8",
-            "6, 13",
-            "10, 89",
-            "20, 10946",
-            "30, 1346269",
-            "45, 1836311903" })
-    @DisplayName("Returns the number of distinct ways to climb the stairs")
-    void shouldReturnNumberOfWays(int steps, int expectedWays) {
-        assertEquals(expectedWays, solution.climbStairs(steps));
+    static Stream<Arguments> solverTestCases() {
+
+        var solvers = Stream.of(
+                Arguments.of("naive recursion solver", new SolutionVariants.NaiveRecursionSolver()),
+                Arguments.of("dp array solver", new SolutionVariants.DPArraySolver()),
+                Arguments.of("two variables solver", new SolutionVariants.TwoVariablesSolver()));
+
+        var testCases = List.of(
+                Arguments.of(1, 1),
+                Arguments.of(2, 2),
+                Arguments.of(3, 3),
+                Arguments.of(4, 5),
+                Arguments.of(5, 8),
+                Arguments.of(6, 13),
+                Arguments.of(10, 89),
+                Arguments.of(20, 10946),
+                Arguments.of(30, 1346269),
+                Arguments.of(45, 1836311903));
+
+        return solvers.flatMap(solver -> testCases.stream().map(testCase -> {
+            var solverArgs = solver.get();
+            var testArgs = testCase.get();
+
+            return Arguments.of(solverArgs[0], solverArgs[1], testArgs[0], testArgs[1]);
+        }));
     }
 }
